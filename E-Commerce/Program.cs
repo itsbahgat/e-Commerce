@@ -24,7 +24,8 @@ namespace E_Commerce
             builder.Services.AddRazorPages();
 
             builder.Services.AddTransient<IEmailSender, EmailSender>();
-            builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
+
+
 
             var app = builder.Build();
 

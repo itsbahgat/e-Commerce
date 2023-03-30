@@ -7,45 +7,25 @@ namespace E_Commerce.Services
 {
     public class EmailSender : IEmailSender
     {
-        private readonly ILogger _logger;
+        private readonly IConfiguration configuration;
 
-        public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor,
-                           ILogger<EmailSender> logger)
+        public EmailSender(IConfiguration configuration)
         {
-            Options = optionsAccessor.Value;
-            _logger = logger;
+            this.configuration = configuration;
         }
 
-        public AuthMessageSenderOptions Options { get; } //Set with Secret Manager.
 
-        public async Task SendEmailAsync(string toEmail, string subject, string message)
+        public async Task SendEmailAsync(string toEmail, string subjectEmail, string message)
         {
-            if (string.IsNullOrEmpty(Options.SendGridKey))
-            {
-                throw new Exception("Null SendGridKey");
-            }
-            await Execute(Options.SendGridKey, subject, message, toEmail);
-        }
-
-        public async Task Execute(string apiKey, string subject, string message, string toEmail)
-        {
+            var apiKey = configuration["SendGridKey"];
             var client = new SendGridClient(apiKey);
-            var msg = new SendGridMessage()
-            {
-                From = new EmailAddress("Joe@contoso.com", "Password Recovery"),
-                Subject = subject,
-                PlainTextContent = message,
-                HtmlContent = message
-            };
-            msg.AddTo(new EmailAddress(toEmail));
-
-            // Disable click tracking.
-            // See https://sendgrid.com/docs/User_Guide/Settings/tracking.html
-            msg.SetClickTracking(false, false);
+            var from = new EmailAddress("raneemsaleh19@gmail.com", "E-Commerce App");
+            var subject = subjectEmail;
+            var to = new EmailAddress(toEmail);
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, message, message);
             var response = await client.SendEmailAsync(msg);
-            _logger.LogInformation(response.IsSuccessStatusCode
-                                   ? $"Email to {toEmail} queued successfully!"
-                                   : $"Failure Email to {toEmail}");
         }
+
+        
     }
 }
