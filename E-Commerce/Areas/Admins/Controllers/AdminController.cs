@@ -36,7 +36,7 @@ namespace E_Commerce.Areas.Admins.Controllers
         // GET: AdminController/Create
         public ActionResult Create()
         {
-            ViewBag.trainees = adminRepository.GetAll();
+            ViewBag.admins = adminRepository.GetAll();
             return View();
         }
 
