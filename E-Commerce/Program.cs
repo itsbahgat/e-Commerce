@@ -19,8 +19,12 @@ namespace E_Commerce
             builder.Services.AddDbContext<IdentityContext>(options => options.UseSqlServer(connectionString));
             builder.Services.AddDbContext<databaseContext>(op => op.UseSqlServer(connectionStringDB));
 
-            builder.Services.AddDefaultIdentity<E_CommerceUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<IdentityContext>();
+            builder.Services.AddDefaultIdentity<E_CommerceUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<IdentityContext>()
+                .AddDefaultTokenProviders();
 
+            
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
