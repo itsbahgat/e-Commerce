@@ -4,6 +4,7 @@ using E_Commerce.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using E_Commerce.Services;
 using Microsoft.Extensions.DependencyInjection;
+using E_Commerce.Models;
 
 namespace E_Commerce
 {
@@ -13,8 +14,10 @@ namespace E_Commerce
         {
             var builder = WebApplication.CreateBuilder(args);
             var connectionString = builder.Configuration.GetConnectionString("IdentityContextConnection") ?? throw new InvalidOperationException("Connection string 'IdentityContextConnection' not found.");
+            var connectionStringDB = builder.Configuration.GetConnectionString("DbContextConnection") ?? throw new InvalidOperationException("Connection string 'DbContextConnection' not found.");
 
             builder.Services.AddDbContext<IdentityContext>(options => options.UseSqlServer(connectionString));
+            builder.Services.AddDbContext<databaseContext>(op => op.UseSqlServer(connectionStringDB));
 
             builder.Services.AddDefaultIdentity<E_CommerceUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<IdentityContext>();
 

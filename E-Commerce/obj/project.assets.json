@@ -11373,6 +11373,7 @@
     "net7.0": [
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 7.0.4",
       "Microsoft.AspNetCore.Identity.UI >= 7.0.4",
+      "Microsoft.EntityFrameworkCore >= 7.0.4",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.4",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.4",
       "Microsoft.Extensions.Configuration.UserSecrets >= 7.0.0",
@@ -11381,19 +11382,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\user\\.nuget\\packages\\": {}
+    "C:\\Users\\noura\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\1-ITI\\ITI_MVC\\E-Commerce\\E-Commerce\\E-Commerce.csproj",
+      "projectUniqueName": "F:\\ITI_mobile cross\\MVC\\project test\\E-Commerce\\E-Commerce.csproj",
       "projectName": "E-Commerce",
-      "projectPath": "D:\\1-ITI\\ITI_MVC\\E-Commerce\\E-Commerce\\E-Commerce.csproj",
-      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "D:\\1-ITI\\ITI_MVC\\E-Commerce\\E-Commerce\\obj\\",
+      "projectPath": "F:\\ITI_mobile cross\\MVC\\project test\\E-Commerce\\E-Commerce.csproj",
+      "packagesPath": "C:\\Users\\noura\\.nuget\\packages\\",
+      "outputPath": "F:\\ITI_mobile cross\\MVC\\project test\\E-Commerce\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\noura\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11401,6 +11407,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -11424,6 +11431,10 @@
             "version": "[7.0.4, )"
           },
           "Microsoft.AspNetCore.Identity.UI": {
+            "target": "Package",
+            "version": "[7.0.4, )"
+          },
+          "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[7.0.4, )"
           },
@@ -11469,7 +11480,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
