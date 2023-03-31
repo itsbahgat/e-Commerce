@@ -1,6 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using E_Commerce.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using E_Commerce.Services;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace E_Commerce
 {
     public class Program
@@ -18,6 +22,10 @@ namespace E_Commerce
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddRazorPages();
+
+            builder.Services.AddTransient<IEmailSender, EmailSender>();
+
+
 
             var app = builder.Build();
 
