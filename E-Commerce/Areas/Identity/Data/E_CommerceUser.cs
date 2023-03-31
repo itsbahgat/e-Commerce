@@ -18,10 +18,10 @@ public class E_CommerceUser : IdentityUser
     [Required , MaxLength(50)]
     public string LastName { get; set; }
 
-    [Required]
+    
     [RegularExpression(@"^01[0125][0-9]{8}$", ErrorMessage = "Please enter a valid phone number.")]
     [AllowNull]
-    public string PhoneNumber { get; set; }
+    public string? PhoneNumber { get; set; }
 
     public string Address { get; set; }
 
