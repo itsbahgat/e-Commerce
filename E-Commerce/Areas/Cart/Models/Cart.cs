@@ -25,6 +25,11 @@ namespace E_Commerce.Areas.Cart.Models
 
         public void AddItem(Product product, int quantity)
         {
+            if (quantity <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(quantity), "Quantity must be greater than 0.");
+            }
+
             var existingCartItem = CartItems.FirstOrDefault(x => x.Id == product.Id);
             if (existingCartItem != null)
             {
