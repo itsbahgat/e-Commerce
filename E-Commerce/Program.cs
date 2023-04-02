@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using E_Commerce.Services;
 using Microsoft.Extensions.DependencyInjection;
 using E_Commerce.Models;
+using Stripe;
 
 namespace E_Commerce
 {
@@ -24,7 +25,8 @@ namespace E_Commerce
                 .AddEntityFrameworkStores<IdentityContext>()
                 .AddDefaultTokenProviders();
 
-            
+
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 

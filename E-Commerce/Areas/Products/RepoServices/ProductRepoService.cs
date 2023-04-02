@@ -65,8 +65,8 @@ namespace E_Commerce.Areas.Products.RepoServices
             updatedProduct.Price = product.Price;
             updatedProduct.Category = product.Category;
             // not sure about the list in the views, we need to add or remove image link
-            //updatedProduct.ImagesString = product.ImagesString;
-            updatedProduct.Images = product.Images;
+            updatedProduct.ImagesString = product.ImagesString;
+            //updatedProduct.Images = product.Images;
             context.SaveChanges();
         }
     }
