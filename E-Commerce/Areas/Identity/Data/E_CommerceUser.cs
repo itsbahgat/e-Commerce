@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using E_Commerce.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace E_Commerce.Areas.Identity.Data;
@@ -24,6 +26,17 @@ public class E_CommerceUser : IdentityUser
     public string? PhoneNumber { get; set; }
 
     public string Address { get; set; }
+
+    // For M:M relationship
+    //ICollection<Product>? Products { get; set; }
+    public virtual ICollection<FavouriteItems>? FavouriteItems { get; set; }
+
+    //// Navigation properties for the CartItems class
+
+    //public virtual ICollection<FavouriteItems>? CartItems { get; set; }
+
+    //// Navigation properties for the PreviousPurchases class
+    //public virtual ICollection<FavouriteItems>? PreviousPurchases { get; set; }
 
 }
 

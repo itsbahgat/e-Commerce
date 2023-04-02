@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using E_Commerce.Models;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace E_Commerce.Areas.Products.Models
@@ -39,5 +40,9 @@ namespace E_Commerce.Areas.Products.Models
             return "Category: "+Category+ " \n"+ "Product Name: " + Name + " \n" + "Description: " + Description+
                 " \n"+ "Price: " + Price+" \n"+ "Images: " + ImagesString;
         }
+
+
+        // For M:M relationship
+        public virtual ICollection<FavouriteItems>? FavouriteItems { get; set; }
     }
 }
