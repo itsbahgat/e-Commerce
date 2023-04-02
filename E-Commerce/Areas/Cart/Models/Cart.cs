@@ -13,12 +13,12 @@ namespace E_Commerce.Areas.Cart.Models
     {
         public int Id { get; set; }
 
-        public string UserId { get; set; }
+        public int CustomerId { get; set; }
 
-        [ForeignKey("UserId")]
-        public virtual E_CommerceUser User { get; set; }
+        [ForeignKey("CustomerId")]
+        public virtual Customer Customer { get; set; }
 
-        public ICollection<CartItem> CartItems { get; set; }
+        public virtual ICollection<CartItem> CartItems { get; set; }
 
         [NotMapped]
         public decimal TotalPrice => CartItems?.Sum(x => x.Price * x.Quantity) ?? 0;
@@ -39,13 +39,16 @@ namespace E_Commerce.Areas.Cart.Models
             }
             else
             {
-                CartItems.Add(new CartItem
+                var newCartItem = new CartItem
                 {
                     Id = product.Id,
                     Name = product.Name,
                     Price = product.Price,
-                    Quantity = quantity
-                });
+                    imageString = product.ImagesString,
+                    Quantity = quantity,
+                    //Cart = this // Set the Cart property to the current Cart instance
+                };
+                CartItems.Add(newCartItem);
             }
         }
 
@@ -56,6 +59,12 @@ namespace E_Commerce.Areas.Cart.Models
             {
                 CartItems.Remove(existingCartItem);
             }
+
+            /*
+            // Also remove the corresponding CartItem from the database
+            var context = new databaseContext();
+            context.CartItems.Remove(existingCartItem);
+            context.SaveChanges();*/
         }
 
         public void Clear()
@@ -70,8 +79,18 @@ namespace E_Commerce.Areas.Cart.Models
         }
     }
 
-    public class CartItem : Product
+    public class CartItem
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public string imageString { get; set; }
+
         public int Quantity { get; set; }
+
+        public int CartId { get; set; }
+
+        [ForeignKey("CartId")]
+        public virtual Cart Cart { get; set; }
     }
 }
