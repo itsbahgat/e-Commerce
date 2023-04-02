@@ -41,13 +41,13 @@ namespace E_Commerce.Areas.Cart.Models
             {
                 var newCartItem = new CartItem
                 {
-                    Id = product.Id,
+                    //Id = product.Id,
                     Name = product.Name,
                     Price = product.Price,
                     imageString = product.ImagesString,
                     Quantity = quantity,
                     CartId = this.Id,
-                    Cart = this // Set the Cart property to the current Cart instance
+                   // Cart = this // Set the Cart property to the current Cart instance
                 };
                 CartItems.Add(newCartItem);
             }
