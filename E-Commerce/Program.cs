@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using E_Commerce.Models;
 using E_Commerce.Areas.Products.RepoServices;
 using E_Commerce.Areas.Admins.RepoServices;
+using E_Commerce.Areas.Customers.RepoServices;
 
 namespace E_Commerce
 {
@@ -39,7 +40,7 @@ namespace E_Commerce
             //anyone request service of type "IProductRepository"
             //create & inject obj of type "IProductRepository" , with Scoped lifetime
             builder.Services.AddScoped<IProductRepository, ProductRepoService>();
-            builder.Services.AddScoped<IAdminRepository, AdminRepoService>();
+            builder.Services.AddScoped<ICustomerRepository, CustomerRepoService>();
 
 
 

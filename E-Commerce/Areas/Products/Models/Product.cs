@@ -43,6 +43,6 @@ namespace E_Commerce.Areas.Products.Models
 
 
         // For M:M relationship
-        public virtual ICollection<FavouriteItems>? FavouriteItems { get; set; }
+        public  ICollection<FavouriteItems>? FavouriteItems { get; set; }
     }
 }

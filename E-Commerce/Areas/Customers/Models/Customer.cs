@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 using E_Commerce.Areas.Products.Models;
+using E_Commerce.Models;
+
 namespace E_Commerce.Areas.Customers.Models
 {
     public class Customer
@@ -8,30 +10,27 @@ namespace E_Commerce.Areas.Customers.Models
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Phone number is required")]
-        [RegularExpression(@"^[0-9]+$", ErrorMessage = "Phone number must be numeric")]
-        public string Phone { get; set; }
+        [Required, MaxLength(50)]
+        public string FirstName { get; set; }
 
-        [Required(ErrorMessage = "Email address is required")]
-        [EmailAddress(ErrorMessage = "Invalid email address")]
-        public string Email { get; set; }
+        [Required, MaxLength(50)]
+        public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Address is required")]
+
+        [RegularExpression(@"^01[0125][0-9]{8}$", ErrorMessage = "Please enter a valid phone number.")]
+        public string? PhoneNumber { get; set; }
+
         public string Address { get; set; }
 
-        [Required(ErrorMessage = "Name is required")]
-        public string Name { get; set; }
+        // For M:M relationship
+        //ICollection<Product>? Products { get; set; }
+        public  ICollection<FavouriteItems>? FavouriteItems { get; set; }
 
-        //public List<int> CartItems { get; set; }
+        //// Navigation properties for the CartItems class
 
-        //public List<int> FavoriteItems { get; set; }
+        //public virtual ICollection<FavouriteItems>? CartItems { get; set; }
 
-        //public List<int> PreviouslyBoughtItems { get; set; }
-
-        public virtual ICollection<Product> Cart { get; set; }
-
-        public virtual ICollection<Product> Favorites { get; set; }
-
-        public virtual ICollection<Product> PreviousPurchases { get; set; }
+        //// Navigation properties for the PreviousPurchases class
+        //public virtual ICollection<FavouriteItems>? PreviousPurchases { get; set; }
     }
 }
