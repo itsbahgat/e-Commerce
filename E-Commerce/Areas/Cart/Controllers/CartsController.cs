@@ -5,29 +5,30 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using E_Commerce.Areas.Cart.Models;
+using E_Commerce.Areas.CartNS.Models;
 using E_Commerce.Models;
 using System.Security.Claims;
+using E_Commerce.Areas.Identity.Data;
 
-namespace E_Commerce.Areas.Cart.Controllers
+namespace E_Commerce.Areas.CartNS.Controllers
 {
     [Area("Cart")]
     [Route("cart")]
     public class CartsController : Controller
     {
-        private readonly databaseContext _context;
+        private readonly IdentityContext _context;
 
-        public CartsController(databaseContext context)
+        public CartsController(IdentityContext context)
         {
             _context = context;
         }
 
 
         [HttpGet("{customerId}/Carts")]
-        public async Task<IActionResult> GetCartsForCustomer(int customerId)
+        public async Task<IActionResult> GetCartsForCustomer(string customerId)
         {
             var carts = await _context.Carts
-                .Where(c => c.CustomerId == customerId)
+                .Where(c => c.E_CommerceUserId == customerId)
                 .ToListAsync();
 
             if (carts == null)
@@ -39,17 +40,17 @@ namespace E_Commerce.Areas.Cart.Controllers
         }
 
         [HttpPost("{customerId}/AddToCart/{productId}")]
-        public async Task<IActionResult> AddToCart(int customerId, int productId, int quantity)
+        public async Task<IActionResult> AddToCart(string customerId, int productId, int quantity)
         {
             // Find the cart for the customer
             var cart = await _context.Carts
                 .Include(c => c.CartItems)
-                .FirstOrDefaultAsync(c => c.CustomerId == customerId && !c.IsCompleted);
+                .FirstOrDefaultAsync(c => c.E_CommerceUserId == customerId && !c.IsCompleted);
 
             // If no cart exists, create a new one
             if (cart == null)
             {
-                cart = new Models.Cart { CustomerId = customerId, IsCompleted = false };
+                cart = new Models.Cart { E_CommerceUserId = customerId, IsCompleted = false };
                 _context.Carts.Add(cart);
             }
 
