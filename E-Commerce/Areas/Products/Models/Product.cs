@@ -29,11 +29,11 @@ namespace E_Commerce.Areas.Products.Models
 
         // Mapping for images property
         [Column("Images")]
-        public string ImagesString
-        {
+        public string ImagesString { get; set; }
+       /* {
             get { return string.Join(",", Images); }
             set { Images = value.Split(',').ToList(); }
-        }
+        }*/
 
     }
 }
