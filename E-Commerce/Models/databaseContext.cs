@@ -1,7 +1,7 @@
 ﻿using E_Commerce.Areas.Admins.Models;
 using E_Commerce.Areas.Customers.Models;
 using E_Commerce.Areas.Products.Models;
-using E_Commerce.Areas.Cart.Models;
+using E_Commerce.Areas.CartArea.Models;
 
 using Microsoft.EntityFrameworkCore;
 

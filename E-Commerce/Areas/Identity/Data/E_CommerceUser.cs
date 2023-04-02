@@ -5,6 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using E_Commerce.Areas.CartArea.Models;
 
 namespace E_Commerce.Areas.Identity.Data;
 
@@ -24,6 +25,8 @@ public class E_CommerceUser : IdentityUser
     public string? PhoneNumber { get; set; }
 
     public string Address { get; set; }
+
+    public virtual ICollection<Cart> Carts { get; set; }
 
 }
 

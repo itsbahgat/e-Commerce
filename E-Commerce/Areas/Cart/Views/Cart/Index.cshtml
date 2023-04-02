@@ -1,4 +1,4 @@
-﻿@model IEnumerable<E_Commerce.Areas.Cart.Models.Cart>
+﻿@model IEnumerable<E_Commerce.Areas.CartArea.Models.Cart>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Customer)
+                @Html.DisplayNameFor(model => model.E_CommerceUser)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IsCompleted)
@@ -25,7 +25,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.Address)
+                @Html.DisplayFor(modelItem => item.E_CommerceUser.Address)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsCompleted)

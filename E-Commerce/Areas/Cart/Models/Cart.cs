@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using E_Commerce.Areas.Customers.Models;
+using E_Commerce.Areas.Identity.Data;
 using E_Commerce.Areas.Products.Models;
 
-namespace E_Commerce.Areas.Cart.Models
+namespace E_Commerce.Areas.CartArea.Models
 {
     public class Cart
     {
         public int Id { get; set; }
 
-        public int CustomerId { get; set; }
+        [ForeignKey("E_CommerceUser")]
+        public string E_CommerceUserId { get; set; }
 
-        [ForeignKey("CustomerId")]
-        public virtual Customer Customer { get; set; }
+        public virtual E_CommerceUser E_CommerceUser { get; set; }
 
         public virtual ICollection<CartItem> CartItems { get; set; }
 
