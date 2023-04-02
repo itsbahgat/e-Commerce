@@ -12,7 +12,23 @@ namespace E_Commerce.Models
 
         }
         public DbSet<Admin> Admins { get; set; }
-        public DbSet<Customer> Customers { get; set; }
+        //public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<FavouriteItems>()
+            .HasKey(f => new { f.CustomerId, f.ProductId });
+
+            //modelBuilder.Entity<FavouriteItems>()
+            //    .HasOne(e => e.Customer)
+            //    .WithMany(c => c.FavouriteItems)
+            //    .HasForeignKey(e => e.ProductId);
+
+            //modelBuilder.Entity<FavouriteItems>()
+            //    .HasOne(e => e.Product)
+            //    .WithMany(c => c.FavouriteItems)
+            //    .HasForeignKey(e => e.ProductId);
+        }
     }
 }

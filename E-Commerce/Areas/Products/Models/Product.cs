@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using E_Commerce.Areas.Identity.Data;
+using E_Commerce.Models;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace E_Commerce.Areas.Products.Models
@@ -21,6 +23,11 @@ namespace E_Commerce.Areas.Products.Models
         [Range(0, double.MaxValue, ErrorMessage = "Price must be a positive value")]
         public decimal Price { get; set; }
 
+        // For M:M relationship
+        // Navigation properties for the FavouriteItems class
+        //ICollection<E_CommerceUser>? Customers { get; set; }
+        public virtual ICollection<FavouriteItems>? FavouriteItems { get; set; }
+
 
         //public List<string> Images { get; set; }
 
@@ -34,6 +41,10 @@ namespace E_Commerce.Areas.Products.Models
             get { return string.Join(",", Images); }
             set { Images = value.Split(',').ToList(); }
         }
-
+        public override string ToString()
+        {
+            return "Category: "+Category+ " \n"+ "Product Name: " + Name + " \n" + "Description: " + Description+
+                " \n"+ "Price: " + Price+" \n"+ "Images: " + ImagesString;
+        }
     }
 }

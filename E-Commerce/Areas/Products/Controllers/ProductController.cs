@@ -1,11 +1,13 @@
 ﻿using E_Commerce.Areas.Admins.RepoServices;
 using E_Commerce.Areas.Products.Models;
 using E_Commerce.Areas.Products.RepoServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E_Commerce.Areas.Products.Controllers
 {
+    [AllowAnonymous]
     public class ProductController : Controller
     {
         private readonly IProductRepository productRepository;
@@ -15,6 +17,7 @@ namespace E_Commerce.Areas.Products.Controllers
             this.productRepository = productRepository;
         }
         // GET: ProductController
+        //[Route("Product")]
         public ActionResult Index()
         {
             ViewBag.products = productRepository.GetAll();
@@ -33,7 +36,7 @@ namespace E_Commerce.Areas.Products.Controllers
 
         public ActionResult DetailsByCategory(string category)
         {
-            return View(productRepository.GetDetailsByCategory(category));
+            return View(productRepository.GetProductsByCategory(category));
         }
 
 
@@ -88,8 +91,7 @@ namespace E_Commerce.Areas.Products.Controllers
         // GET: ProductController/Delete/5
         public ActionResult Delete(int id)
         {
-            ViewBag.admins = productRepository.GetAll();
-            return View();
+            return View(productRepository.GetDetailsByID(id));
         }
 
         // POST: ProductController/Delete/5
