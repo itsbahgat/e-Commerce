@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
-using E_Commerce.Models;
+using E_Commerce.Areas.FavouriteList.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace E_Commerce.Areas.Identity.Data;

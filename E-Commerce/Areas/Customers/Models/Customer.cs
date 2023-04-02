@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
+using E_Commerce.Areas.FavouriteList.Models;
 using E_Commerce.Areas.Products.Models;
-using E_Commerce.Models;
 
 namespace E_Commerce.Areas.Customers.Models
 {

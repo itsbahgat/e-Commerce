@@ -8,6 +8,7 @@ using E_Commerce.Models;
 using E_Commerce.Areas.Products.RepoServices;
 using E_Commerce.Areas.Admins.RepoServices;
 using E_Commerce.Areas.Customers.RepoServices;
+using E_Commerce.Areas.FavouriteList.RepoServices;
 
 namespace E_Commerce
 {
@@ -41,6 +42,7 @@ namespace E_Commerce
             //create & inject obj of type "IProductRepository" , with Scoped lifetime
             builder.Services.AddScoped<IProductRepository, ProductRepoService>();
             builder.Services.AddScoped<ICustomerRepository, CustomerRepoService>();
+            builder.Services.AddScoped<IFavouritesRepository, FavouritesRepoService>();
 
 
 

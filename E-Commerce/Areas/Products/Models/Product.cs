@@ -1,4 +1,4 @@
-﻿using E_Commerce.Models;
+﻿using E_Commerce.Areas.FavouriteList.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -25,15 +25,17 @@ namespace E_Commerce.Areas.Products.Models
 
         //public List<string> Images { get; set; }
 
-        [NotMapped]
-        public List<string> Images { get; set; } = new List<string>();
+        //[NotMapped]
+        //public string Images { get; set; }
+        //public List<string> Images { get; set; } = new List<string>();
 
         // Mapping for images property
         [Column("Images")]
         public string ImagesString
         {
-            get { return string.Join(",", Images); }
-            set { Images = value.Split(',').ToList(); }
+            get; set;
+            //get { return string.Join(",", Images); }
+            //set { Images = value.Split(',').ToList(); }
         }
         public override string ToString()
         {

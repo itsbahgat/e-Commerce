@@ -1,5 +1,6 @@
 ﻿using E_Commerce.Areas.Admins.Models;
 using E_Commerce.Areas.Customers.Models;
+using E_Commerce.Areas.FavouriteList.Models;
 using E_Commerce.Areas.Identity.Data;
 using E_Commerce.Areas.Products.Models;
 using Microsoft.EntityFrameworkCore;
