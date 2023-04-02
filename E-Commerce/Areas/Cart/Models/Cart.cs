@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using E_Commerce.Areas.Customers.Models;
+using E_Commerce.Areas.Identity.Data;
 using E_Commerce.Areas.Products.Models;
+using E_Commerce.Areas.Customers.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace E_Commerce.Areas.Cart.Models
 {
@@ -11,12 +13,12 @@ namespace E_Commerce.Areas.Cart.Models
     {
         public int Id { get; set; }
 
-        public int CustomerId { get; set; }
+        public string UserId { get; set; }
 
-        [ForeignKey("CustomerId")]
-        public virtual Customer Customer { get; set; }
+        [ForeignKey("UserId")]
+        public virtual E_CommerceUser User { get; set; }
 
-        public virtual ICollection<CartItem> CartItems { get; set; }
+        public ICollection<CartItem> CartItems { get; set; }
 
         [NotMapped]
         public decimal TotalPrice => CartItems?.Sum(x => x.Price * x.Quantity) ?? 0;

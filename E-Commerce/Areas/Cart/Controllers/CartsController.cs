@@ -6,29 +6,29 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using E_Commerce.Areas.Cart.Models;
+using E_Commerce.Areas.Identity.Data;
 using E_Commerce.Models;
 
 namespace E_Commerce.Areas.Cart.Controllers
 {
-    //Auto Generated - WE NEED TO UPDATE THIS CONTROLLER BUT FIRST I HAVE TO HAVE A FULLY FINISHED CUSTOMER AND PRODUCT
     [Area("Cart")]
-    public class CartController : Controller
+    public class CartsController : Controller
     {
         private readonly databaseContext _context;
 
-        public CartController(databaseContext context)
+        public CartsController(databaseContext context)
         {
             _context = context;
         }
 
-        // GET: Cart/Cart
+        // GET: Cart/Carts
         public async Task<IActionResult> Index()
         {
-            var databaseContext = _context.Carts.Include(c => c.Customer);
+            var databaseContext = _context.Carts.Include(c => c.User);
             return View(await databaseContext.ToListAsync());
         }
 
-        // GET: Cart/Cart/Details/5
+        // GET: Cart/Carts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Carts == null)
@@ -37,7 +37,7 @@ namespace E_Commerce.Areas.Cart.Controllers
             }
 
             var cart = await _context.Carts
-                .Include(c => c.Customer)
+                .Include(c => c.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (cart == null)
             {
@@ -47,19 +47,19 @@ namespace E_Commerce.Areas.Cart.Controllers
             return View(cart);
         }
 
-        // GET: Cart/Cart/Create
+        // GET: Cart/Carts/Create
         public IActionResult Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Address");
+            ViewData["UserId"] = new SelectList(_context.Set<E_CommerceUser>(), "Id", "Id");
             return View();
         }
 
-        // POST: Cart/Cart/Create
+        // POST: Cart/Carts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CustomerId,IsCompleted")] Models.Cart cart)
+        public async Task<IActionResult> Create([Bind("Id,UserId,IsCompleted")] Models.Cart cart)
         {
             if (ModelState.IsValid)
             {
@@ -67,11 +67,11 @@ namespace E_Commerce.Areas.Cart.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Address", cart.CustomerId);
+            ViewData["UserId"] = new SelectList(_context.Set<E_CommerceUser>(), "Id", "Id", cart.UserId);
             return View(cart);
         }
 
-        // GET: Cart/Cart/Edit/5
+        // GET: Cart/Carts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Carts == null)
@@ -84,16 +84,16 @@ namespace E_Commerce.Areas.Cart.Controllers
             {
                 return NotFound();
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Address", cart.CustomerId);
+            ViewData["UserId"] = new SelectList(_context.Set<E_CommerceUser>(), "Id", "Id", cart.UserId);
             return View(cart);
         }
 
-        // POST: Cart/Cart/Edit/5
+        // POST: Cart/Carts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CustomerId,IsCompleted")] Models.Cart cart)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,IsCompleted")] Models.Cart cart)
         {
             if (id != cart.Id)
             {
@@ -120,11 +120,11 @@ namespace E_Commerce.Areas.Cart.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Address", cart.CustomerId);
+            ViewData["UserId"] = new SelectList(_context.Set<E_CommerceUser>(), "Id", "Id", cart.UserId);
             return View(cart);
         }
 
-        // GET: Cart/Cart/Delete/5
+        // GET: Cart/Carts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Carts == null)
@@ -133,7 +133,7 @@ namespace E_Commerce.Areas.Cart.Controllers
             }
 
             var cart = await _context.Carts
-                .Include(c => c.Customer)
+                .Include(c => c.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (cart == null)
             {
@@ -143,7 +143,7 @@ namespace E_Commerce.Areas.Cart.Controllers
             return View(cart);
         }
 
-        // POST: Cart/Cart/Delete/5
+        // POST: Cart/Carts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
