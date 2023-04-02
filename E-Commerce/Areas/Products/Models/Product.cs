@@ -25,7 +25,7 @@ namespace E_Commerce.Areas.Products.Models
         //public List<string> Images { get; set; }
 
         [NotMapped]
-        public List<string> Images { get; set; }
+        public List<string> Images { get; set; } = new List<string>();
 
         // Mapping for images property
         [Column("Images")]

@@ -29,11 +29,13 @@ namespace E_Commerce.Areas.Products.Controllers
         {
             return View(productRepository.GetDetailsByID(id));
         }
+        [Route("Product/DetailsByName/{name}")]
         public ActionResult DetailsByName(string name)
         {
             return View(productRepository.GetDetailsByName(name));
         }
 
+        [Route("Product/DetailsByCategory/{category}")]
         public ActionResult DetailsByCategory(string category)
         {
             return View(productRepository.GetProductsByCategory(category));
