@@ -4,8 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
-using E_Commerce.Areas.Products.Models;
-using E_Commerce.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace E_Commerce.Areas.Identity.Data;
@@ -26,11 +24,6 @@ public class E_CommerceUser : IdentityUser
     public string? PhoneNumber { get; set; }
 
     public string Address { get; set; }
-
-
-    // For M:M relationship
-    //ICollection<Product>? Products { get; set; }
-    public ICollection<FavouriteItems>? FavouriteItems { get; set; }
 
 }
 

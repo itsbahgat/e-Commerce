@@ -1,6 +1,4 @@
-﻿using E_Commerce.Areas.Identity.Data;
-using E_Commerce.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace E_Commerce.Areas.Products.Models
@@ -22,11 +20,6 @@ namespace E_Commerce.Areas.Products.Models
         [Required(ErrorMessage = "Product price is required")]
         [Range(0, double.MaxValue, ErrorMessage = "Price must be a positive value")]
         public decimal Price { get; set; }
-
-        // For M:M relationship
-        // Navigation properties for the FavouriteItems class
-        //ICollection<E_CommerceUser>? Customers { get; set; }
-        public virtual ICollection<FavouriteItems>? FavouriteItems { get; set; }
 
 
         //public List<string> Images { get; set; }

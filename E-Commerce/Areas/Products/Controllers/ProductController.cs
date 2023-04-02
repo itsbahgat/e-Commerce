@@ -17,7 +17,7 @@ namespace E_Commerce.Areas.Products.Controllers
             this.productRepository = productRepository;
         }
         // GET: ProductController
-        //[Route("Product")]
+        [Route("Product")]
         public ActionResult Index()
         {
             ViewBag.products = productRepository.GetAll();

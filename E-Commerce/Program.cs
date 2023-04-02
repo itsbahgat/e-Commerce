@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using E_Commerce.Services;
 using Microsoft.Extensions.DependencyInjection;
 using E_Commerce.Models;
+using E_Commerce.Areas.Products.RepoServices;
+using E_Commerce.Areas.Admins.RepoServices;
 
 namespace E_Commerce
 {
@@ -33,6 +35,14 @@ namespace E_Commerce
             builder.Services.AddTransient<IEmailSender, EmailSender>();
 
 
+            //DI Container ==> Create & inject services
+            //anyone request service of type "IProductRepository"
+            //create & inject obj of type "IProductRepository" , with Scoped lifetime
+            builder.Services.AddScoped<IProductRepository, ProductRepoService>();
+            builder.Services.AddScoped<IAdminRepository, AdminRepoService>();
+
+
+
 
             var app = builder.Build();
 
@@ -56,7 +66,9 @@ namespace E_Commerce
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
+            //app.MapControllerRoute(
+            //    name: "default",
+            //    pattern: "{controller=Product}/{action=index}/{id?}");
             app.Run();
         }
     }

@@ -22,7 +22,7 @@ namespace E_Commerce.Migrations.database
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("E_Commerce.Areas.Admins.Models.Admin", b =>
+            modelBuilder.Entity("E_Commerce.Areas.Admin.Entity.Admin", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -47,7 +47,7 @@ namespace E_Commerce.Migrations.database
                     b.ToTable("Admins");
                 });
 
-            modelBuilder.Entity("E_Commerce.Areas.Customers.Models.Customer", b =>
+            modelBuilder.Entity("E_Commerce.Areas.Customer.Entity.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -76,7 +76,7 @@ namespace E_Commerce.Migrations.database
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("E_Commerce.Areas.Products.Models.Product", b =>
+            modelBuilder.Entity("E_Commerce.Areas.Products.Entity.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -124,22 +124,22 @@ namespace E_Commerce.Migrations.database
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("E_Commerce.Areas.Products.Models.Product", b =>
+            modelBuilder.Entity("E_Commerce.Areas.Products.Entity.Product", b =>
                 {
-                    b.HasOne("E_Commerce.Areas.Customers.Models.Customer", null)
+                    b.HasOne("E_Commerce.Areas.Customer.Entity.Customer", null)
                         .WithMany("Cart")
                         .HasForeignKey("CustomerId");
 
-                    b.HasOne("E_Commerce.Areas.Customers.Models.Customer", null)
+                    b.HasOne("E_Commerce.Areas.Customer.Entity.Customer", null)
                         .WithMany("Favorites")
                         .HasForeignKey("CustomerId1");
 
-                    b.HasOne("E_Commerce.Areas.Customers.Models.Customer", null)
+                    b.HasOne("E_Commerce.Areas.Customer.Entity.Customer", null)
                         .WithMany("PreviousPurchases")
                         .HasForeignKey("CustomerId2");
                 });
 
-            modelBuilder.Entity("E_Commerce.Areas.Customers.Models.Customer", b =>
+            modelBuilder.Entity("E_Commerce.Areas.Customer.Entity.Customer", b =>
                 {
                     b.Navigation("Cart");
 
