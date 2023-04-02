@@ -1,4 +1,4 @@
-﻿using E_Commerce.Areas.Customers.Models;
+﻿using E_Commerce.Areas.Identity.Data;
 using E_Commerce.Models;
 using Stripe;
 
@@ -6,21 +6,32 @@ namespace E_Commerce.Areas.Customers.RepoServices
 {
     public class CustomerRepoService : ICustomerRepository
     {
-        private readonly databaseContext context;
+        private readonly IdentityContext context;
+        private readonly List<E_CommerceUser> users;
 
-        public CustomerRepoService(databaseContext context)
+        public CustomerRepoService(IdentityContext context)
         {
             this.context = context;
+            //users = (from role in context.Roles
+            //         join userRole in context.UserRoles on role.Id equals userRole.RoleId
+            //         join user in context.Users on userRole.UserId equals user.Id
+            //         where role.Name.ToLower() == "user"
+            //         select user).ToList() ;
+            users = (from user in context.Users
+                     join userRole in context.UserRoles on user.Id equals userRole.UserId
+                     join role in context.Roles on userRole.RoleId equals role.Id
+                     where role.Name.ToLower() == "user"
+                     select user).ToList() ;
         }
-        public void Insert(Models.Customer customer)
+        public void Insert(E_CommerceUser customer)
         {
-            context.Customers.Add(customer);
+            context.Users.Add(customer);
             context.SaveChanges();
         }
 
-        public void UpdateCustomer(int id, Models.Customer customer)
+        public void UpdateCustomer(string id, E_CommerceUser customer)
         {
-            var updatedCustomer = context.Customers.Find(id);
+            var updatedCustomer = context.Users.Find(id);
             if (updatedCustomer == null)
                 return;
             updatedCustomer.Address = customer.Address;
@@ -30,16 +41,16 @@ namespace E_Commerce.Areas.Customers.RepoServices
             context.SaveChanges();
         }
 
-        List<Models.Customer> ICustomerRepository.GetAll()
+        List<E_CommerceUser> ICustomerRepository.GetAll()
         {
-            return context.Customers.ToList();
+            return users;
         }
 
-        Models.Customer ICustomerRepository.GetDetailsByID(int id)
+        E_CommerceUser ICustomerRepository.GetDetailsByID(string id)
         {
-            var customer = context.Customers.FirstOrDefault(c => c.Id == id);
+            var customer = users.FirstOrDefault(c => c.Id == id);
             if (customer == null)
-                return new Models.Customer();
+                return new E_CommerceUser();
             return customer;
         }
     }

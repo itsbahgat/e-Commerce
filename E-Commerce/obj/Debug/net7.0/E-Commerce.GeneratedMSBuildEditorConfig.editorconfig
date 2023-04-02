@@ -9,173 +9,201 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = E_Commerce
 build_property.RootNamespace = E_Commerce
-build_property.ProjectDir = F:\ITI_mobile cross\MVC\project test\V2 - Copy\e-Commerce\E-Commerce\
+build_property.ProjectDir = C:\Users\noura\Downloads\e-Commerce-testRelation\E-Commerce\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = F:\ITI_mobile cross\MVC\project test\V2 - Copy\e-Commerce\E-Commerce
+build_property.MSBuildProjectDirectory = C:\Users\noura\Downloads\e-Commerce-testRelation\E-Commerce
 build_property._RazorSourceGeneratorDebug = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Areas/Identity/Pages/Account/ConfirmEmail.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/FavouriteItems/Favourite/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRmF2b3VyaXRlSXRlbXNcRmF2b3VyaXRlXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/FavouriteItems/Favourite/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRmF2b3VyaXRlSXRlbXNcRmF2b3VyaXRlXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/FavouriteItems/Favourite/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRmF2b3VyaXRlSXRlbXNcRmF2b3VyaXRlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/Identity/Pages/Account/ConfirmEmail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxDb25maXJtRW1haWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Areas/Identity/Pages/Account/ForgotPassword.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/Identity/Pages/Account/ForgotPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Areas/Identity/Pages/Account/Login.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/Identity/Pages/Account/ForgotPasswordConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxGb3Jnb3RQYXNzd29yZENvbmZpcm1hdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/Identity/Pages/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Areas/Identity/Pages/Account/Manage/Index.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/Identity/Pages/Account/Manage/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Areas/Identity/Pages/Account/Manage/PersonalData.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/Identity/Pages/Account/Manage/PersonalData.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcUGVyc29uYWxEYXRhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX01hbmFnZU5hdi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Areas/Identity/Pages/Account/Register.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/Identity/Pages/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3RlckNvbmZpcm1hdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Areas/Identity/Pages/Account/ResendEmailConfirmation.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/Identity/Pages/Account/ResendEmailConfirmation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNlbmRFbWFpbENvbmZpcm1hdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Areas/Identity/Pages/Account/_StatusMessage.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/Identity/Pages/Account/_StatusMessage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfU3RhdHVzTWVzc2FnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/Identity/Pages/Account/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Areas/Identity/Pages/_ViewImports.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/Identity/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Customer/Create.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Customer/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Customer/Details.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Customer/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Customer/Edit.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Customer/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Customer/Index.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Customer/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Favourite/Create.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Favourite/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3VyaXRlXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Favourite/Delete.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Favourite/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3VyaXRlXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Favourite/Index.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Favourite/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3VyaXRlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Home/Index.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Home/Privacy.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Home/man.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxtYW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Payment/Index.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Home/shopCart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxzaG9wQ2FydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Home/shopDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxzaG9wRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Payment/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Payment/Success.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Payment/Success.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxTdWNjZXNzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Product/Create.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Product/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Product/Delete.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Product/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Product/Details.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Product/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Product/DetailsByCategory.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Product/DetailsByCategory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxEZXRhaWxzQnlDYXRlZ29yeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Product/DetailsByName.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Product/DetailsByName.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxEZXRhaWxzQnlOYW1lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Product/Edit.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Product/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Product/Index.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Product/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Shared/Error.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Shared/_HomeLayout.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Shared/_HomeLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ib21lTGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Shared/_innerLayout.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Shared/_innerLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9pbm5lckxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/_ViewImports.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/_ViewStart.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ITI_mobile cross/MVC/project test/V2 - Copy/e-Commerce/E-Commerce/Views/Shared/_Layout.cshtml]
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-4yuo1jszy4

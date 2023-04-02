@@ -1,4 +1,5 @@
 ﻿using E_Commerce.Areas.Admins.Models;
+using E_Commerce.Areas.Identity.Data;
 using E_Commerce.Areas.Products.Models;
 using E_Commerce.Models;
 
@@ -6,9 +7,9 @@ namespace E_Commerce.Areas.Products.RepoServices
 {
     public class ProductRepoService: IProductRepository
     {
-        private readonly databaseContext context;
+        private readonly IdentityContext context;
 
-        public ProductRepoService(databaseContext context)
+        public ProductRepoService(IdentityContext context)
         {
             this.context = context;
         }
@@ -27,19 +28,12 @@ namespace E_Commerce.Areas.Products.RepoServices
             return context.Products.ToList();
         }
 
-        //public Product GetDetailsByCategory(string category)
-        //{
-        //    var product = context.Products.FirstOrDefault(a => a.Category.ToLower() == category.ToLower());
-        //    if (product == null)
-        //        return new Product();
-        //    return product;
-        //}
-        public List<Product> GetProductsByCategory(string category)
+        public Product GetDetailsByCategory(string category)
         {
-            var products = context.Products.Where(a => a.Category.ToLower() == category.ToLower());
-            if (products == null)
-                return new List<Product>();
-            return products.ToList();
+            var product = context.Products.FirstOrDefault(a => a.Category.ToLower() == category.ToLower());
+            if (product == null)
+                return new Product();
+            return product;
         }
 
         public Product GetDetailsByID(int id)
@@ -72,8 +66,8 @@ namespace E_Commerce.Areas.Products.RepoServices
             updatedProduct.Price = product.Price;
             updatedProduct.Category = product.Category;
             // not sure about the list in the views, we need to add or remove image link
-            //updatedProduct.ImagesString = product.ImagesString;
             updatedProduct.ImagesString = product.ImagesString;
+            //updatedProduct.Images = product.Images;
             context.SaveChanges();
         }
     }

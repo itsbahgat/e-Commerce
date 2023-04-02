@@ -1,5 +1,5 @@
-﻿using E_Commerce.Areas.Customers.Models;
-using E_Commerce.Areas.Customers.RepoServices;
+﻿using E_Commerce.Areas.Customers.RepoServices;
+using E_Commerce.Areas.Identity.Data;
 using E_Commerce.Areas.Products.RepoServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +22,7 @@ namespace E_Commerce.Areas.Customers.Controllers
         }
 
         // GET: CustomerController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
             return View(customerRepository.GetDetailsByID(id));
         }
@@ -37,7 +37,7 @@ namespace E_Commerce.Areas.Customers.Controllers
         // POST: CustomerController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Customer customer)
+        public ActionResult Create(E_CommerceUser customer)
         {
             ViewBag.customers = customerRepository.GetAll();
             try
@@ -52,7 +52,7 @@ namespace E_Commerce.Areas.Customers.Controllers
         }
 
         // GET: CustomerController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
             ViewBag.customers = customerRepository.GetAll();
             return View(customerRepository.GetDetailsByID(id));
@@ -61,7 +61,7 @@ namespace E_Commerce.Areas.Customers.Controllers
         // POST: CustomerController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Customer customer)
+        public ActionResult Edit(string id, E_CommerceUser customer)
         {
             ViewBag.customers = customerRepository.GetAll();
             try

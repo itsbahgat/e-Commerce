@@ -9,6 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\FavouriteItems\Data\" />
+    <Folder Include="Areas\FavouriteItems\Views\" />
     <Folder Include="wwwroot\assets\img\icons\" />
     <Folder Include="wwwroot\assets\img\illustrations\" />
   </ItemGroup>

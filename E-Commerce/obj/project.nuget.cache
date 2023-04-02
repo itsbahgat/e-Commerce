@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JN72B055xmrJOfVVO9yBjYJNC/1+8VuR7gpKkVtRbZcCcWRmk23m48uLZ/NtXXFqo7S1eG0sazbDurpCxnE/xA==",
+  "dgSpecHash": "zqKjNLCOAApoeoMXdRX5iP5KXvOUJWwWqJQ+H5K8EDTLyEcQDxidYoPQ+E7+E19bbBpdVcLKjpb3t+60TAdHlg==",
   "success": true,
-  "projectFilePath": "F:\\ITI_mobile cross\\MVC\\project test\\V2 - Copy\\e-Commerce\\E-Commerce\\E-Commerce.csproj",
+  "projectFilePath": "C:\\Users\\noura\\Downloads\\e-Commerce-testRelation\\E-Commerce\\E-Commerce.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\noura\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\noura\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

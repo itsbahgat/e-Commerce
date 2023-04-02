@@ -1,13 +1,11 @@
 ﻿using E_Commerce.Areas.Admins.RepoServices;
 using E_Commerce.Areas.Products.Models;
 using E_Commerce.Areas.Products.RepoServices;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E_Commerce.Areas.Products.Controllers
 {
-    [AllowAnonymous]
     public class ProductController : Controller
     {
         private readonly IProductRepository productRepository;
@@ -38,7 +36,7 @@ namespace E_Commerce.Areas.Products.Controllers
         [Route("Product/DetailsByCategory/{category}")]
         public ActionResult DetailsByCategory(string category)
         {
-            return View(productRepository.GetProductsByCategory(category));
+            return View(productRepository.GetDetailsByCategory(category));
         }
 
 

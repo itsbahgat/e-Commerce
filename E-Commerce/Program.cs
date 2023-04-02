@@ -5,10 +5,11 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using E_Commerce.Services;
 using Microsoft.Extensions.DependencyInjection;
 using E_Commerce.Models;
+using Stripe;
 using E_Commerce.Areas.Products.RepoServices;
-using E_Commerce.Areas.Admins.RepoServices;
+using E_Commerce.Areas.FavouriteItems.Models;
+using E_Commerce.Areas.FavouriteItems.RepoServices;
 using E_Commerce.Areas.Customers.RepoServices;
-using E_Commerce.Areas.FavouriteList.RepoServices;
 
 namespace E_Commerce
 {
@@ -21,29 +22,27 @@ namespace E_Commerce
             var connectionStringDB = builder.Configuration.GetConnectionString("DbContextConnection") ?? throw new InvalidOperationException("Connection string 'DbContextConnection' not found.");
 
             builder.Services.AddDbContext<IdentityContext>(options => options.UseSqlServer(connectionString));
-            builder.Services.AddDbContext<databaseContext>(op => op.UseSqlServer(connectionStringDB));
+            //builder.Services.AddDbContext<databaseContext>(op => op.UseSqlServer(connectionStringDB));
 
             builder.Services.AddDefaultIdentity<E_CommerceUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<IdentityContext>()
                 .AddDefaultTokenProviders();
 
-            
+            //DI Container ==> Create & inject services
+            //anyone request service of type "IProductRepository"
+            //create & inject obj of type "IProductRepository" , with Scoped lifetime
+            builder.Services.AddScoped<IProductRepository, ProductRepoService>();
+            builder.Services.AddScoped<IFavouritesRepository, FavouritesRepoService>();
+            builder.Services.AddScoped<ICustomerRepository, CustomerRepoService>();
+
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddRazorPages();
 
             builder.Services.AddTransient<IEmailSender, EmailSender>();
-
-
-            //DI Container ==> Create & inject services
-            //anyone request service of type "IProductRepository"
-            //create & inject obj of type "IProductRepository" , with Scoped lifetime
-            builder.Services.AddScoped<IProductRepository, ProductRepoService>();
-            builder.Services.AddScoped<ICustomerRepository, CustomerRepoService>();
-            builder.Services.AddScoped<IFavouritesRepository, FavouritesRepoService>();
-
 
 
 
@@ -69,9 +68,7 @@ namespace E_Commerce
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-            //app.MapControllerRoute(
-            //    name: "default",
-            //    pattern: "{controller=Product}/{action=index}/{id?}");
+
             app.Run();
         }
     }

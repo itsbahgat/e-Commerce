@@ -28,5 +28,18 @@ namespace E_Commerce.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Man()
+        {
+            return View();
+        }
+        public IActionResult shopDetails()
+        {
+            return View();
+        }
+        public IActionResult shopCart()
+        {
+            return View();
+        }
     }
 }

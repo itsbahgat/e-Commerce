@@ -1,4 +1,4 @@
-﻿@model IEnumerable<E_Commerce.Areas.FavouriteList.Models.FavouriteItems>
+﻿@model IEnumerable<E_Commerce.Areas.FavouriteItems.Models.FavouriteItemsRelation>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Customer)
+                @Html.DisplayNameFor(model => model.E_CommerceUser)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Product)
@@ -25,15 +25,15 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.FirstName)
+                    @Html.DisplayFor(modelItem => item.E_CommerceUser.FirstName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Product.Name)
             </td>
             <td>
-                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
-                    @Html.ActionLink("Delete", $"Delete", new {custId= item.Customer.Id,prodId = item.Product.Id})
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", $"Delete", new {custId= item.E_CommerceUser.Id,prodId = item.Product.Id})
             </td>
         </tr>
 }
