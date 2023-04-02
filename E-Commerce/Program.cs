@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using E_Commerce.Services;
 using Microsoft.Extensions.DependencyInjection;
 using E_Commerce.Models;
+using Stripe;
 
 namespace E_Commerce
 {
@@ -23,8 +24,21 @@ namespace E_Commerce
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<IdentityContext>()
                 .AddDefaultTokenProviders();
-
             
+            //external login
+            builder.Services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = builder.Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = builder.Configuration["Authentication:Facebook:AppSecret"];
+            });
+
+            builder.Services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+            });
+
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
