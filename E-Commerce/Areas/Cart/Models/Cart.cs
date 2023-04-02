@@ -46,7 +46,8 @@ namespace E_Commerce.Areas.Cart.Models
                     Price = product.Price,
                     imageString = product.ImagesString,
                     Quantity = quantity,
-                    //Cart = this // Set the Cart property to the current Cart instance
+                    CartId = this.Id,
+                    Cart = this // Set the Cart property to the current Cart instance
                 };
                 CartItems.Add(newCartItem);
             }
