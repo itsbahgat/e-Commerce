@@ -25,16 +25,10 @@ namespace E_Commerce.Areas.Products.Models
 
         //public List<string> Images { get; set; }
 
-        [NotMapped]
-        //public List<string> Images { get; set; }
-
         // Mapping for images property
         [Column("Images")]
         public string ImagesString
-        {
-            get;
-            set;
-        }
+        {get; set; }
 
         public virtual ICollection<FavouriteItemsRelation> FavouriteItemsRelation { get; set; }
 

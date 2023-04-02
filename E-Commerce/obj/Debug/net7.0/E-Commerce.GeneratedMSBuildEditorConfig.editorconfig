@@ -28,6 +28,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRmF2b3VyaXRlSXRlbXNcRmF2b3VyaXRlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/FavouriteItems/Views/Favourite/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRmF2b3VyaXRlSXRlbXNcVmlld3NcRmF2b3VyaXRlXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Areas/Identity/Pages/Account/ConfirmEmail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxDb25maXJtRW1haWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -110,6 +114,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Favourite/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3VyaXRlXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Favourite/CreateOld.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3VyaXRlXENyZWF0ZU9sZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/noura/Downloads/e-Commerce-testRelation/E-Commerce/Views/Favourite/Delete.cshtml]

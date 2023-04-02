@@ -1,4 +1,5 @@
 ﻿using E_Commerce.Areas.Admins.RepoServices;
+using E_Commerce.Areas.FavouriteItems.RepoServices;
 using E_Commerce.Areas.Products.Models;
 using E_Commerce.Areas.Products.RepoServices;
 using Microsoft.AspNetCore.Http;
@@ -9,15 +10,20 @@ namespace E_Commerce.Areas.Products.Controllers
     public class ProductController : Controller
     {
         private readonly IProductRepository productRepository;
+        private readonly IFavouritesRepository favouritesRepository;
 
-        public ProductController(IProductRepository productRepository)
+        public ProductController(IProductRepository productRepository, IFavouritesRepository favouritesRepository)
         {
             this.productRepository = productRepository;
+            this.favouritesRepository = favouritesRepository;
         }
         // GET: ProductController
         [Route("Product")]
         public ActionResult Index()
         {
+            var prods = productRepository.GetAll();
+            ViewBag.cats = prods.Select(p => p.Category).Distinct();
+            ViewBag.favRepo = favouritesRepository;
             ViewBag.products = productRepository.GetAll();
             return View(productRepository.GetAll());
         }

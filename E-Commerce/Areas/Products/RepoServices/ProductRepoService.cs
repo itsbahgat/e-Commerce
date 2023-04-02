@@ -28,12 +28,12 @@ namespace E_Commerce.Areas.Products.RepoServices
             return context.Products.ToList();
         }
 
-        public Product GetDetailsByCategory(string category)
+        public List<Product> GetDetailsByCategory(string category)
         {
-            var product = context.Products.FirstOrDefault(a => a.Category.ToLower() == category.ToLower());
-            if (product == null)
-                return new Product();
-            return product;
+            var products = context.Products.Where(a => a.Category.ToLower() == category.ToLower()).ToList();
+            if (products == null)
+                return new List<Product>();
+            return products;
         }
 
         public Product GetDetailsByID(int id)

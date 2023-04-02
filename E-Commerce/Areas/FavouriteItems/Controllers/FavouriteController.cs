@@ -21,32 +21,59 @@ namespace E_Commerce.Areas.FavouriteList.Controllers
             return View(favouritesRepository.GetAll(custId));
         }
 
-        // GET: FavouriteController/Create
-        [Route("Favourite/Create")]
-        public ActionResult Create()
-        {
-            ViewBag.Customers = favouritesRepository.GetAllCustomers().Distinct();
-            ViewBag.Products = favouritesRepository.GetAllProducts();
-            return View();
-        }
+        //// GET: FavouriteController/Create
+        //[Route("Favourite/Create")]
+        //public ActionResult Create()
+        //{
+        //    ViewBag.Customers = favouritesRepository.GetAllCustomers().Distinct();
+        //    ViewBag.Products = favouritesRepository.GetAllProducts();
+        //    return View();
+        //}
+
+        //// POST: FavouriteController/Create
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[Route("Favourite/Create")]
+        //public ActionResult Create(FavouriteItemsRelation favourite)
+        //{
+        //    //ViewBag.Customers = favouritesRepository.GetAllCustomers();
+        //    //ViewBag.Products = favouritesRepository.GetAllProducts();
+        //    try
+        //    {
+        //        favouritesRepository.AddItemToFav(favourite);
+        //        //return RedirectToAction(nameof(Index));
+        //        return RedirectToAction("Index", "Favourite", new { custId = favourite.E_CommerceUserId });
+        //    }
+        //    catch
+        //    {
+        //        //Console.WriteLine("err");
+        //        return View();
+        //    }
+        //}
+
+        //// GET: FavouriteController/Create
+        //[Route("Favourite/Create/{custId}/{prodId}")]
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
 
         // POST: FavouriteController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("Favourite/Create")]
-        public ActionResult Create(FavouriteItemsRelation favourite)
+        [Route("Favourite/Create/{custId}/{prodId}")]
+        public ActionResult Create(string custId, int prodId)
         {
-            //ViewBag.Customers = favouritesRepository.GetAllCustomers();
-            //ViewBag.Products = favouritesRepository.GetAllProducts();
             try
             {
+                var favourite = new FavouriteItemsRelation { ProductId = prodId, E_CommerceUserId = custId };
                 favouritesRepository.AddItemToFav(favourite);
                 //return RedirectToAction(nameof(Index));
-                return RedirectToAction("Index", "Favourite", new { custId = favourite.E_CommerceUserId });
+                return RedirectToAction("Index", "Product");
+                //return RedirectToAction("Index", "Favourite", new { custId = favourite.E_CommerceUserId });
             }
             catch
             {
-                //Console.WriteLine("err");
                 return View();
             }
         }
