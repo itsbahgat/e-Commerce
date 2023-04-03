@@ -1,5 +1,4 @@
-﻿using E_Commerce.Areas.Admins.Models;
-using E_Commerce.Areas.Identity.Data;
+﻿using E_Commerce.Areas.Identity.Data;
 using E_Commerce.Areas.Products.Models;
 using E_Commerce.Models;
 using Stripe;

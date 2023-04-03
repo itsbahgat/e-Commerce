@@ -11,9 +11,9 @@ using E_Commerce.Areas.FavouriteItems.Models;
 using E_Commerce.Areas.FavouriteItems.RepoServices;
 using E_Commerce.Areas.Customers.RepoServices;
 using System.Text.Json.Serialization;
-using E_Commerce.Areas.Products.RepoServices;
+//using E_Commerce.Areas.Products.RepoServices;
 using E_Commerce.Interfaces;
-using E_Commerce.Areas.Admins.RepoServices;
+//using E_Commerce.Areas.Admins.RepoServices;
 
 namespace E_Commerce
 {
@@ -69,7 +69,7 @@ namespace E_Commerce
             builder.Services.AddTransient<IEmailSender, EmailSender>();
             builder.Services.AddTransient<IPhotoService, PhotoService>();
 
-            builder.Services.AddTransient<IAdminRepository, AdminRepoService>();
+            //builder.Services.AddTransient<IAdminRepository, AdminRepoService>();
             builder.Services.AddTransient<IProductRepository, ProductRepoService>();
 
 

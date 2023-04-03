@@ -1,5 +1,4 @@
-﻿using E_Commerce.Areas.Admins.RepoServices;
-using E_Commerce.Areas.FavouriteItems.RepoServices;
+﻿using E_Commerce.Areas.FavouriteItems.RepoServices;
 using E_Commerce.Areas.Products.Models;
 using E_Commerce.Areas.Products.RepoServices;
 using E_Commerce.Interfaces;
@@ -108,7 +107,8 @@ namespace E_Commerce.Areas.Products.Controllers
                    
                 };
                 productRepository.Insert(product);
-                return RedirectToAction("Index");
+                return RedirectToAction("GetAllProductsForAdmin", "Product", "");
+
             }
             else
             {
