@@ -1,4 +1,6 @@
-﻿using E_Commerce.Areas.Identity.Data;
+﻿using E_Commerce.Areas.CartNS.Models;
+using E_Commerce.Areas.Identity.Data;
+using E_Commerce.Areas.Products.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -19,4 +21,11 @@ public class IdentityContext : IdentityDbContext<E_CommerceUser>
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
     }
+
+    public DbSet<Cart> Carts { get; set; }
+    public DbSet<E_CommerceUser> E_CommerceUsers { get; set; }
+    public DbSet<CartItem> CartItems { get; set; }
+    public DbSet<Product> Products { get; set; }
+
+
 }

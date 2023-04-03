@@ -6,9 +6,12 @@ using E_Commerce.Services;
 using Microsoft.Extensions.DependencyInjection;
 using E_Commerce.Models;
 using Stripe;
+using System.Text.Json.Serialization;
+
 
 namespace E_Commerce
 {
+    //testing
     public class Program
     {
         public static void Main(string[] args)
@@ -19,7 +22,11 @@ namespace E_Commerce
 
             builder.Services.AddDbContext<IdentityContext>(options => options.UseSqlServer(connectionString));
             builder.Services.AddDbContext<databaseContext>(op => op.UseSqlServer(connectionStringDB));
-
+            builder.Services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                });
             builder.Services.AddDefaultIdentity<E_CommerceUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<IdentityContext>()
