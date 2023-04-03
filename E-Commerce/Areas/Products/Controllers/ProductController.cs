@@ -75,6 +75,7 @@ namespace E_Commerce.Areas.Products.Controllers
 
 
         // GET: ProductController/Create
+        [Route("Admin/product/create")]
         public ActionResult Create()
         {
 
@@ -89,6 +90,7 @@ namespace E_Commerce.Areas.Products.Controllers
         // POST: ProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Admin/product/create")]
         public async Task<IActionResult> Create(CreateProductViewModel productVM)
         {
 
@@ -164,5 +166,14 @@ namespace E_Commerce.Areas.Products.Controllers
                 return View();
             }
         }
+
+
+        [Route("Admin/product/all")]
+        public IActionResult GetAllProductsForAdmin()
+        {
+            var products = productRepository.GetAll();
+            return View(products);
+        }
+
     }
 }

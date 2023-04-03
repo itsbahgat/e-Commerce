@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using E_Commerce.Areas.CartArea.Models;
+using E_Commerce.Areas.CartArea;
 using E_Commerce.Models;
 
 namespace E_Commerce.Areas.CartArea.Controllers

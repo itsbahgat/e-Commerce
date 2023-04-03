@@ -1,13 +1,10 @@
 ﻿@model E_Commerce.ViewModels.CreateProductViewModel
 
 
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
 @{
-    ViewData["Title"] = "Create";
-    var reopFavourites = ViewBag.favRepo;
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
+
 
 <div class="w-50 container d-flex justify-content-center align-items-center">
     <form method="post" asp-action="Create" enctype="multipart/form-data">
@@ -34,17 +31,6 @@
             <input asp-for="Price" class="form-control" />
             <span asp-validation-for="Price" class="text-danger"></span>
         </div>
-                                                <div class="form-group">
-                                                    <label asp-for="ImagesString" class="control-label"></label>
-                                                    <input asp-for="ImagesString" class="form-control" />
-                                                    <span asp-validation-for="ImagesString" class="text-danger"></span>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="submit" value="Create" class="btn btn-primary" />
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
 
         <div class="col">
             <input asp-for="Image" type="file" class="form-control form-control-lg" placeholder="Image" />
@@ -56,21 +42,3 @@
         </div>
     </form>
 </div>
-    </section>
-    <script src="~/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="~/assets/js/bootstrap.min.js"></script>
-    <script src="~/assets/js/jquery.nice-select.min.js"></script>
-    <script src="~/assets/js/jquery.nicescroll.min.js"></script>
-    <script src="~/assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="~/assets/js/jquery.countdown.min.js"></script>
-    <script src="~/assets/js/jquery.slicknav.js"></script>
-    <script src="~/assets/js/mixitup.min.js"></script>
-    <script src="~/assets/js/owl.carousel.min.js"></script>
-    <script src="~/assets/js/main.js"></script>
-</body>
-</html>
-
-
-
-
-
