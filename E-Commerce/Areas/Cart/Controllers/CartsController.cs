@@ -62,7 +62,8 @@ namespace E_Commerce.Areas.CartNS.Controllers
                 c.CartId
             });
 
-            return Ok(response);
+           // return Ok(response);
+            return View(response);
         }
 
 
