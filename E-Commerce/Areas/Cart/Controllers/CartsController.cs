@@ -41,7 +41,7 @@ namespace E_Commerce.Areas.CartNS.Controllers
             return Ok(carts);
         }
 
-        [HttpGet("{customerId}/Cart")]
+        [HttpGet("{customerId}/CartItems")]
         public async Task<IActionResult> GetCartForCustomer(string customerId)
         {
             var cartItems = await _context.CartItems
