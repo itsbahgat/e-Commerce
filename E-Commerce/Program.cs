@@ -8,6 +8,7 @@ using E_Commerce.Models;
 using Stripe;
 using System.Text.Json.Serialization;
 
+
 namespace E_Commerce
 {
     //testing
@@ -30,8 +31,21 @@ namespace E_Commerce
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<IdentityContext>()
                 .AddDefaultTokenProviders();
-
             
+            //external login
+            builder.Services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = builder.Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = builder.Configuration["Authentication:Facebook:AppSecret"];
+            });
+
+            builder.Services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+            });
+
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
