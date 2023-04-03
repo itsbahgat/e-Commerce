@@ -12,6 +12,7 @@
 @{
     ViewData["Title"] = "DetailsByCategory";
     var reopFavourites =  ViewBag.favRepo;
+    var prodNum = Model.Count() % 12;
 }
 <html>
 
@@ -82,12 +83,12 @@
                                         <div class="card-body">
                                             <div class="shop__sidebar__price">
                                                 <ul>
-                                                    <li><a href="#">$0.00 - $50.00</a></li>
-                                                    <li><a href="#">$50.00 - $100.00</a></li>
-                                                    <li><a href="#">$100.00 - $150.00</a></li>
-                                                    <li><a href="#">$150.00 - $200.00</a></li>
-                                                    <li><a href="#">$200.00 - $250.00</a></li>
-                                                    <li><a href="#">250.00+</a></li>
+                                                    <li> @Html.ActionLink("$0.00 - $50.00", "GetByPriceRange", "Product", new { sm = 0, lg=50}, null)</li>
+                                                    <li> @Html.ActionLink("$50.00 - $100.00", "GetByPriceRange", "Product", new {sm = 50, lg=100 }, null)</li>
+                                                    <li> @Html.ActionLink("$100.00 - $150.00", "GetByPriceRange", "Product", new {sm = 100, lg=150 }, null)</li>
+                                                    <li> @Html.ActionLink("$150.00 - $200.00", "GetByPriceRange", "Product", new {sm = 150, lg=200 }, null)</li>
+                                                    <li> @Html.ActionLink("$200.00 - $250.00", "GetByPriceRange", "Product", new {sm = 200, lg=250}, null)</li>
+                                                    <li> @Html.ActionLink("$250.00+", "GetByPriceRange", "Product", new { sm = 50, lg=int.MaxValue}, null)</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -183,17 +184,7 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="shop__product__option__left">
-                                    <p>Showing 1–12 of 126 results</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="shop__product__option__right">
-                                    <p>Sort by Price:</p>
-                                    <select>
-                                        <option value="">Low To High</option>
-                                        <option value="">$0 - $55</option>
-                                        <option value="">$55 - $100</option>
-                                    </select>
+                                    <p>Showing @prodNum of @Model.Count() results</p>
                                 </div>
                             </div>
                         </div>
@@ -201,53 +192,20 @@
 
                     <h1>All Products</h1>
 
-                    @*<p>
-                    <a asp-action="Create">Create New</a>
-                    </p>*@
                     <div class="col-lg-9">
-                        <div class="shop__product__option">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="shop__product__option__left">
-                                        <p>Showing 1–12 of 126 results</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="shop__product__option__right">
-                                        <p>Sort by Price:</p>
-                                        <select>
-                                            <option value="">Low To High</option>
-                                            <option value="">$0 - $55</option>
-                                            <option value="">$55 - $100</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row">
                             <table class="table">
 
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-
                                         <tr>
                                             <div class="col-lg-4 col-md-6 col-sm-6">
                                                 <div class="product__item">
                                                     <div class="product__item__pic set-bg">
                                                         <img class="product__item__pic" src=@Html.DisplayFor(modelItem => item.ImagesString) alt="">
                                                         <ul class="product__hover">
-
-                                                            @*<script>
-                                                        function addToFavourites() {
-                                                        @reopFavourites.AddItemToFav(new FavouriteItemsRelation { ProductId =  item.Id, E_CommerceUserId = "c11284432c07" });
-                                                        }
-                                                        </script>
-
-                                                        <li><button onclick="addToFavourites()"><img src="~/assets/img/icon/heart.png" alt=""></button></li>
-                                                        *@
-                                                            @*<li><button onclick="return function(){@reopFavourites.AddItemToFav(new FavouriteItemsRelation { ProductId =  item.Id, E_CommerceUserId = "c11284432c07" })}()"><img src="~/assets/img/icon/heart.png" alt=""></button></li>*@
-                                                        </ul>
+</ul>
                                                     </div>
                                                     <div class="product__item__text">
                                                         <h6>@Html.DisplayFor(modelItem => item.Name)</h6>
