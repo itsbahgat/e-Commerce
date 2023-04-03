@@ -22,12 +22,6 @@ namespace E_Commerce.Areas.Customers.Models
         [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
 
-        //public List<int> CartItems { get; set; }
-
-        //public List<int> FavoriteItems { get; set; }
-
-        //public List<int> PreviouslyBoughtItems { get; set; }
-
         public virtual ICollection<Product> Cart { get; set; }
 
         public virtual ICollection<Product> Favorites { get; set; }

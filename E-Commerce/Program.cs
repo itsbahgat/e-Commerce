@@ -10,9 +10,12 @@ using E_Commerce.Areas.Products.RepoServices;
 using E_Commerce.Areas.FavouriteItems.Models;
 using E_Commerce.Areas.FavouriteItems.RepoServices;
 using E_Commerce.Areas.Customers.RepoServices;
+using System.Text.Json.Serialization;
+
 
 namespace E_Commerce
 {
+    //testing
     public class Program
     {
         public static void Main(string[] args)
@@ -22,7 +25,13 @@ namespace E_Commerce
             var connectionStringDB = builder.Configuration.GetConnectionString("DbContextConnection") ?? throw new InvalidOperationException("Connection string 'DbContextConnection' not found.");
 
             builder.Services.AddDbContext<IdentityContext>(options => options.UseSqlServer(connectionString));
-            //builder.Services.AddDbContext<databaseContext>(op => op.UseSqlServer(connectionStringDB));
+
+            builder.Services.AddDbContext<databaseContext>(op => op.UseSqlServer(connectionStringDB));
+            builder.Services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                });
 
             builder.Services.AddDefaultIdentity<E_CommerceUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
