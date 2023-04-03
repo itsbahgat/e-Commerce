@@ -47,27 +47,6 @@ namespace E_Commerce.Migrations.database
                     b.ToTable("Admins");
                 });
 
-            modelBuilder.Entity("E_Commerce.Areas.Cart.Models.Cart", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsCompleted")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("Carts");
-                });
-
             modelBuilder.Entity("E_Commerce.Areas.Customers.Models.Customer", b =>
                 {
                     b.Property<int>("Id")
@@ -122,10 +101,6 @@ namespace E_Commerce.Migrations.database
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ImagesString")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
@@ -147,36 +122,6 @@ namespace E_Commerce.Migrations.database
                     b.HasIndex("CustomerId2");
 
                     b.ToTable("Products");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Product");
-
-                    b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("E_Commerce.Areas.Cart.Models.CartItem", b =>
-                {
-                    b.HasBaseType("E_Commerce.Areas.Products.Models.Product");
-
-                    b.Property<int?>("CartId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasIndex("CartId");
-
-                    b.HasDiscriminator().HasValue("CartItem");
-                });
-
-            modelBuilder.Entity("E_Commerce.Areas.Cart.Models.Cart", b =>
-                {
-                    b.HasOne("E_Commerce.Areas.Customers.Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("E_Commerce.Areas.Products.Models.Product", b =>
@@ -192,18 +137,6 @@ namespace E_Commerce.Migrations.database
                     b.HasOne("E_Commerce.Areas.Customers.Models.Customer", null)
                         .WithMany("PreviousPurchases")
                         .HasForeignKey("CustomerId2");
-                });
-
-            modelBuilder.Entity("E_Commerce.Areas.Cart.Models.CartItem", b =>
-                {
-                    b.HasOne("E_Commerce.Areas.Cart.Models.Cart", null)
-                        .WithMany("CartItems")
-                        .HasForeignKey("CartId");
-                });
-
-            modelBuilder.Entity("E_Commerce.Areas.Cart.Models.Cart", b =>
-                {
-                    b.Navigation("CartItems");
                 });
 
             modelBuilder.Entity("E_Commerce.Areas.Customers.Models.Customer", b =>

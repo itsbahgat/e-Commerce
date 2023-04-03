@@ -5,6 +5,13 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using E_Commerce.Services;
 using Microsoft.Extensions.DependencyInjection;
 using E_Commerce.Models;
+using Stripe;
+using E_Commerce.Areas.Products.RepoServices;
+using E_Commerce.Areas.FavouriteItems.Models;
+using E_Commerce.Areas.FavouriteItems.RepoServices;
+using E_Commerce.Areas.Customers.RepoServices;
+using System.Text.Json.Serialization;
+
 
 namespace E_Commerce
 {
@@ -18,14 +25,40 @@ namespace E_Commerce
             var connectionStringDB = builder.Configuration.GetConnectionString("DbContextConnection") ?? throw new InvalidOperationException("Connection string 'DbContextConnection' not found.");
 
             builder.Services.AddDbContext<IdentityContext>(options => options.UseSqlServer(connectionString));
+
             builder.Services.AddDbContext<databaseContext>(op => op.UseSqlServer(connectionStringDB));
+            builder.Services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                });
 
             builder.Services.AddDefaultIdentity<E_CommerceUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<IdentityContext>()
                 .AddDefaultTokenProviders();
+                
+            //external login
+            builder.Services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = builder.Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = builder.Configuration["Authentication:Facebook:AppSecret"];
+            });
 
-            
+            builder.Services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+            });
+
+            //DI Container ==> Create & inject services
+            //anyone request service of type "IProductRepository"
+            //create & inject obj of type "IProductRepository" , with Scoped lifetime
+            builder.Services.AddScoped<IProductRepository, ProductRepoService>();
+            builder.Services.AddScoped<IFavouritesRepository, FavouritesRepoService>();
+            builder.Services.AddScoped<ICustomerRepository, CustomerRepoService>();
+
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 

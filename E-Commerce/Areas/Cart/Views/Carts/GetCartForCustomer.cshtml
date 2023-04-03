@@ -1,0 +1,39 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    ViewData["Title"] = "GetCartForCustomer";
+}
+
+<h1>GetCartForCustomer</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Quantity</th>
+            <th>CartId</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td><img src="@item.imageString" alt="Product Image" /></td>
+                <td>@item.Quantity</td>
+                <td>@item.CartId</td>
+            </tr>
+        }
+    </tbody>
+</table>

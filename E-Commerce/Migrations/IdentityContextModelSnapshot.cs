@@ -22,7 +22,7 @@ namespace E_Commerce.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("E_Commerce.Areas.CartArea.Models.Cart", b =>
+            modelBuilder.Entity("E_Commerce.Areas.CartNS.Models.Cart", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,10 +41,10 @@ namespace E_Commerce.Migrations
 
                     b.HasIndex("E_CommerceUserId");
 
-                    b.ToTable("Cart");
+                    b.ToTable("Carts", (string)null);
                 });
 
-            modelBuilder.Entity("E_Commerce.Areas.CartArea.Models.CartItem", b =>
+            modelBuilder.Entity("E_Commerce.Areas.CartNS.Models.CartItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -52,21 +52,8 @@ namespace E_Commerce.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CartId")
+                    b.Property<int>("CartId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImagesString")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Images");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -78,11 +65,18 @@ namespace E_Commerce.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<string>("imageString")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("productID")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CartId");
 
-                    b.ToTable("CartItem");
+                    b.ToTable("CartItems", (string)null);
                 });
 
             modelBuilder.Entity("E_Commerce.Areas.Identity.Data.E_CommerceUser", b =>
@@ -162,6 +156,39 @@ namespace E_Commerce.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("E_Commerce.Areas.Products.Models.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagesString")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Images");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -301,7 +328,7 @@ namespace E_Commerce.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("E_Commerce.Areas.CartArea.Models.Cart", b =>
+            modelBuilder.Entity("E_Commerce.Areas.CartNS.Models.Cart", b =>
                 {
                     b.HasOne("E_Commerce.Areas.Identity.Data.E_CommerceUser", "E_CommerceUser")
                         .WithMany("Carts")
@@ -312,11 +339,15 @@ namespace E_Commerce.Migrations
                     b.Navigation("E_CommerceUser");
                 });
 
-            modelBuilder.Entity("E_Commerce.Areas.CartArea.Models.CartItem", b =>
+            modelBuilder.Entity("E_Commerce.Areas.CartNS.Models.CartItem", b =>
                 {
-                    b.HasOne("E_Commerce.Areas.CartArea.Models.Cart", null)
+                    b.HasOne("E_Commerce.Areas.CartNS.Models.Cart", "Cart")
                         .WithMany("CartItems")
-                        .HasForeignKey("CartId");
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -370,7 +401,7 @@ namespace E_Commerce.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("E_Commerce.Areas.CartArea.Models.Cart", b =>
+            modelBuilder.Entity("E_Commerce.Areas.CartNS.Models.Cart", b =>
                 {
                     b.Navigation("CartItems");
                 });
