@@ -65,6 +65,17 @@ namespace E_Commerce
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
+            app.MapControllerRoute(
+                    name: "adminProducts",
+                    pattern: "Admin/product/all",
+                    defaults: new { controller = "Product", action = "GetAllProductsForAdmin" });
+
+            app.MapControllerRoute(
+                    name: "adminProducts",
+                    pattern: "Admin/product/create",
+                    defaults: new { controller = "Product", action = "Create" });
+
+
             app.Run();
         }
     }

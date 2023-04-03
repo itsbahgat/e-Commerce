@@ -5,6 +5,7 @@ using E_Commerce.Interfaces;
 using E_Commerce.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Stripe;
 
 namespace E_Commerce.Areas.Products.Controllers
@@ -41,8 +42,16 @@ namespace E_Commerce.Areas.Products.Controllers
             return View(productRepository.GetDetailsByCategory(category));
         }
 
+        [Route("Admin/product/all")]
+        public IActionResult GetAllProductsForAdmin()
+        {
+            var products = productRepository.GetAll();
+            return View(products);
+        }
 
-        // GET: ProductController/Create
+
+
+        [Route("Admin/product/create")]
         public ActionResult Create()
         {
             ViewBag.products = productRepository.GetAll();
@@ -53,6 +62,7 @@ namespace E_Commerce.Areas.Products.Controllers
         // POST: ProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Admin/product/create")]
         public async Task<IActionResult> Create(CreateProductViewModel productVM)
         {
 

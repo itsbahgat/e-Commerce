@@ -26,18 +26,18 @@
 				<h1><a href="index.html" class="logo"><img class="d-inline-block" src="~/assets/img/gallery/logo.png" alt="logo" /></a></h1>
 				<ul class="list-unstyled components mb-5">
 					<li class="active">
-						<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+						<a href="@Url.Action("GetAllProductsForAdmin", "Product")" data-toggle="collapse" aria-expanded="false">
 							<i class="fa fa-shopping-cart"></i> &nbsp;Products
 						</a>
-						<ul class="collapse list-unstyled" id="homeSubmenu">
-							<li><a href="@Url.Action("Create", "Product")">Add Product</a></li>
+						@*<ul class="collapse list-unstyled" id="homeSubmenu">
+							<li><a href="@Url.Action("GetAllProductsForAdmin", "Product")">Add Product</a></li>
 							<li>
 								<a href="#">Home 2</a>
 							</li>
 							<li>
 								<a href="#">Home 3</a>
 							</li>
-						</ul>
+						</ul>*@
 					</li>
 					<li>
 						<a href="#">About</a>
