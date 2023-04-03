@@ -29,7 +29,7 @@
     <!--    Stylesheets-->
     <!-- ===============================================-->
     <link href="~/assets/css/theme.css" rel="stylesheet" />
-     <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://js.stripe.com/v3/"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
 </head>
@@ -52,7 +52,7 @@
                         <li class="nav-item px-2"><a class="nav-link fw-medium" href="@Url.Action("shopDetails", "Home")">Shop Details</a></li>
                         <li class="nav-item px-2"><a class="nav-link fw-medium" href="@Url.Action("shopCart", "Home")">Shop Cart</a></li>
                         <li class="nav-item px-2"><a class="nav-link fw-medium" href="@Url.Action("Index", "Product")">All products</a></li>
-                        
+
                     </ul>
                     <form class="d-flex">
                         <a class="text-1000" href="#!">
@@ -83,12 +83,12 @@
                     </form>
 
                 </div>
-            <partial name="_LoginPartial" />
+                <partial name="_LoginPartial" />
             </div>
         </nav>
 
-        <section class="py-1 bg-light-gradient border-bottom border-white border-5">	
-                @RenderBody()
+        <section class="py-1 bg-light-gradient border-bottom border-white border-5">
+            @RenderBody()
         </section>
         <!-- ============================================-->
         <!-- <section> begin ============================-->

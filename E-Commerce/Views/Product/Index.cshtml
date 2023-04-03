@@ -11,19 +11,19 @@
 @inject UserManager<E_CommerceUser> UserManager
 
 @{
+    Layout = "~/Views/Shared/_innerLayoutt.cshtml";
+}
 
-    ViewData["Title"] = "Index";
-    var reopFavourites = ViewBag.favRepo;
+@{
+
     var prodNum = Model.Count() % 12;
 
 
     var optionsBuilder = new DbContextOptionsBuilder<IdentityContext>();
     optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=E_Commerce;Integrated Security=True;Encrypt=false;MultipleActiveResultSets=true");
 
-    IdentityContext context = new IdentityContext(optionsBuilder.Options );
+    IdentityContext context = new IdentityContext(optionsBuilder.Options);
 
-    // Get the UserManager instance from the HttpContext
-    //var userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
     string userId = string.Empty;
     FavouriteItemsRelation itemRelation = new FavouriteItemsRelation();
     if (User != null)
@@ -31,10 +31,6 @@
         //@if (SignInManager.IsSignedIn(User))
         // Get the currently logged in user
         userId = User.Claims.ToList()[0].Value;
-        Console.WriteLine(userId);
-        Trace.WriteLine(userId);
-
-        //itemRelation.ProductId = 1;
         itemRelation.E_CommerceUserId = userId;
         itemRelation.Product = new Product();
         itemRelation.E_CommerceUser = new E_CommerceUser();
@@ -183,20 +179,20 @@
                             </div>
                         </div>
                         <div class="row">
+
+                            <!--start region-->
+                            <!--start region-->
                             <table class="table">
 
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-
                                         <tr>
                                             <div class="col-lg-4 col-md-6 col-sm-6">
                                                 <div class="product__item">
                                                     <div class="product__item__pic set-bg">
                                                         <img class="product__item__pic" src=@Html.DisplayFor(modelItem => item.ImagesString) alt="">
-                                                        <ul class="product__hover">
-                                                            @itemRelation.ProductId = @item.Id;
-                                                        </ul>
+
                                                     </div>
                                                     <div class="product__item__text">
                                                         <h6>@Html.DisplayFor(modelItem => item.Name)</h6>
@@ -209,7 +205,8 @@
                                     }
                                 </tbody>
                             </table>
-
+                            <!--end region-->
+                            <!--end region-->
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="product__pagination">
@@ -237,3 +234,4 @@
     <script src="~/assets/js/main.js"></script>
 </body>
 </html>
+

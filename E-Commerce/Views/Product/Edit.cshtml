@@ -74,12 +74,12 @@
                                         <div class="card-body">
                                             <div class="shop__sidebar__price">
                                                 <ul>
-                                                    <li><a href="#">$0.00 - $50.00</a></li>
-                                                    <li><a href="#">$50.00 - $100.00</a></li>
-                                                    <li><a href="#">$100.00 - $150.00</a></li>
-                                                    <li><a href="#">$150.00 - $200.00</a></li>
-                                                    <li><a href="#">$200.00 - $250.00</a></li>
-                                                    <li><a href="#">250.00+</a></li>
+                                                    <li> @Html.ActionLink("$0.00 - $50.00", "GetByPriceRange", "Product", new { sm = 0, lg=50}, null)</li>
+                                                    <li> @Html.ActionLink("$50.00 - $100.00", "GetByPriceRange", "Product", new {sm = 50, lg=100 }, null)</li>
+                                                    <li> @Html.ActionLink("$100.00 - $150.00", "GetByPriceRange", "Product", new {sm = 100, lg=150 }, null)</li>
+                                                    <li> @Html.ActionLink("$150.00 - $200.00", "GetByPriceRange", "Product", new {sm = 150, lg=200 }, null)</li>
+                                                    <li> @Html.ActionLink("$200.00 - $250.00", "GetByPriceRange", "Product", new {sm = 200, lg=250}, null)</li>
+                                                    <li> @Html.ActionLink("$250.00+", "GetByPriceRange", "Product", new { sm = 50, lg=int.MaxValue}, null)</li>
                                                 </ul>
                                             </div>
                                         </div>

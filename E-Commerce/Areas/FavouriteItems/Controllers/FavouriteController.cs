@@ -51,19 +51,23 @@ namespace E_Commerce.Areas.FavouriteList.Controllers
         //    }
         //}
 
-        //// GET: FavouriteController/Create
+        // GET: FavouriteController/Create
         //[Route("Favourite/Create/{custId}/{prodId}")]
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        [Route("Favourite/Create")]
+        public ActionResult Create()
+        {
+            return View();
+        }
 
         // POST: FavouriteController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("Favourite/Create/{custId}/{prodId}")]
+        //[Route("Favourite/Create/{custId}/{prodId}")]
+        [Route("Favourite/Create")]
         public ActionResult Create(string custId, int prodId)
         {
+            ViewBag.Customers = favouritesRepository.GetAllCustomers();
+            ViewBag.Products = favouritesRepository.GetAllProducts();
             try
             {
                 var favourite = new FavouriteItemsRelation { ProductId = prodId, E_CommerceUserId = custId };
