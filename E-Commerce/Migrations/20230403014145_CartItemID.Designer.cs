@@ -4,6 +4,7 @@ using E_Commerce.Areas.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Commerce.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    partial class IdentityContextModelSnapshot : ModelSnapshot
+    [Migration("20230403014145_CartItemID")]
+    partial class CartItemID
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,20 +25,6 @@ namespace E_Commerce.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-
-            modelBuilder.Entity("E_Commerce.Areas.FavouriteItems.Models.FavouriteItemsRelation", b =>
-                {
-                    b.Property<string>("E_CommerceUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("E_CommerceUserId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("FavouriteItemsRelations");
             modelBuilder.Entity("E_Commerce.Areas.CartNS.Models.Cart", b =>
                 {
                     b.Property<int>("Id")
@@ -83,8 +72,9 @@ namespace E_Commerce.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("productID")
-                        .HasColumnType("int");
+                    b.Property<string>("productID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -342,31 +332,13 @@ namespace E_Commerce.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-
-            modelBuilder.Entity("E_Commerce.Areas.FavouriteItems.Models.FavouriteItemsRelation", b =>
-                {
-                    b.HasOne("E_Commerce.Areas.Identity.Data.E_CommerceUser", "E_CommerceUser")
-                        .WithMany("FavouriteItemsRelation")
-
             modelBuilder.Entity("E_Commerce.Areas.CartNS.Models.Cart", b =>
                 {
                     b.HasOne("E_Commerce.Areas.Identity.Data.E_CommerceUser", "E_CommerceUser")
                         .WithMany("Carts")
-
                         .HasForeignKey("E_CommerceUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-
-                    b.HasOne("E_Commerce.Areas.Products.Models.Product", "Product")
-                        .WithMany("FavouriteItemsRelation")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("E_CommerceUser");
-
-                    b.Navigation("Product");
 
                     b.Navigation("E_CommerceUser");
                 });
@@ -380,7 +352,6 @@ namespace E_Commerce.Migrations
                         .IsRequired();
 
                     b.Navigation("Cart");
-
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -433,16 +404,6 @@ namespace E_Commerce.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
-
-
-            modelBuilder.Entity("E_Commerce.Areas.Identity.Data.E_CommerceUser", b =>
-                {
-                    b.Navigation("FavouriteItemsRelation");
-                });
-
-            modelBuilder.Entity("E_Commerce.Areas.Products.Models.Product", b =>
-                {
-                    b.Navigation("FavouriteItemsRelation");
 
             modelBuilder.Entity("E_Commerce.Areas.CartNS.Models.Cart", b =>
                 {
