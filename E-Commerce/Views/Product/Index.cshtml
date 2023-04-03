@@ -10,9 +10,6 @@
 
 @inject UserManager<E_CommerceUser> UserManager
 
-@{
-    Layout = "~/Views/Shared/_innerLayoutt.cshtml";
-}
 
 @{
 
@@ -26,7 +23,7 @@
 
     string userId = string.Empty;
     FavouriteItemsRelation itemRelation = new FavouriteItemsRelation();
-    if (User != null)
+    if (User.Claims.Count()!=0)
     {
         //@if (SignInManager.IsSignedIn(User))
         // Get the currently logged in user
