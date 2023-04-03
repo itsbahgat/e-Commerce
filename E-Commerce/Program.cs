@@ -11,6 +11,8 @@ using E_Commerce.Areas.FavouriteItems.Models;
 using E_Commerce.Areas.FavouriteItems.RepoServices;
 using E_Commerce.Areas.Customers.RepoServices;
 using System.Text.Json.Serialization;
+using E_Commerce.Areas.Products.RepoServices;
+using E_Commerce.Interfaces;
 
 
 namespace E_Commerce
@@ -65,6 +67,8 @@ namespace E_Commerce
             builder.Services.AddRazorPages();
 
             builder.Services.AddTransient<IEmailSender, EmailSender>();
+            builder.Services.AddTransient<IProductRepository, ProductRepoService>();
+            builder.Services.AddTransient<IPhotoService, PhotoService>();
 
 
 

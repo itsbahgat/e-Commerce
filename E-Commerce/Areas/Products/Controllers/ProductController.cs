@@ -2,8 +2,11 @@
 using E_Commerce.Areas.FavouriteItems.RepoServices;
 using E_Commerce.Areas.Products.Models;
 using E_Commerce.Areas.Products.RepoServices;
+using E_Commerce.Interfaces;
+using E_Commerce.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Stripe;
 
 namespace E_Commerce.Areas.Products.Controllers
 {
@@ -11,11 +14,14 @@ namespace E_Commerce.Areas.Products.Controllers
     {
         private readonly IProductRepository productRepository;
         private readonly IFavouritesRepository favouritesRepository;
+        private readonly IPhotoService photoService;
 
-        public ProductController(IProductRepository productRepository, IFavouritesRepository favouritesRepository)
+        
+        public ProductController(IProductRepository productRepository, IPhotoService photoService , IFavouritesRepository favouritesRepository)
         {
             this.productRepository = productRepository;
             this.favouritesRepository = favouritesRepository;
+            this.photoService = photoService;
         }
         // GET: ProductController
         [Route("Product")]
@@ -76,24 +82,38 @@ namespace E_Commerce.Areas.Products.Controllers
             ViewBag.cats = prods.Select(p => p.Category).Distinct();
             ViewBag.favRepo = favouritesRepository;
             ViewBag.products = productRepository.GetAll();
-            return View();
+            CreateProductViewModel viewModel = new CreateProductViewModel();
+            return View(viewModel);
         }
 
         // POST: ProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Product product)
+        public async Task<IActionResult> Create(CreateProductViewModel productVM)
         {
-            ViewBag.products = productRepository.GetAll();
-            try
+
+            if (ModelState.IsValid)
             {
+                var result = await photoService.UploadPhotoAsync(productVM.Image);
+
+                var product = new Models.Product
+                {
+                    Name = productVM.Name,
+                    Category = productVM.Category,
+                    Price = productVM.Price,
+                    Description = productVM.Description,
+                    ImagesString = result.Url.ToString(),
+                   
+                };
                 productRepository.Insert(product);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
-            catch
+            else
             {
-                return View();
+                ModelState.AddModelError("", "Photo upload failed");
             }
+
+           return View(productVM);
         }
 
         // GET: ProductController/Edit/5
@@ -109,7 +129,7 @@ namespace E_Commerce.Areas.Products.Controllers
         // POST: ProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Product product)
+        public ActionResult Edit(int id, Models.Product product)
         {
             try
             {
