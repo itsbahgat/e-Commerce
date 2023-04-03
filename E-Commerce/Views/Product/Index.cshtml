@@ -1,29 +1,46 @@
 ﻿@using E_Commerce.Areas.FavouriteItems.Models;
 @using E_Commerce.Areas.Identity.Data;
 @using System.Security.Claims;
+@using Microsoft.AspNetCore.Identity;
+@using System.Diagnostics;
+@using E_Commerce.Areas.FavouriteItems.RepoServices;
+@using Microsoft.EntityFrameworkCore;
+@using E_Commerce.Areas.Products.Models;
 @model IEnumerable<E_Commerce.Areas.Products.Models.Product>
 
+@inject UserManager<E_CommerceUser> UserManager
+
 @{
+
     ViewData["Title"] = "Index";
     var reopFavourites = ViewBag.favRepo;
     var prodNum = Model.Count() % 12;
 
+
+    var optionsBuilder = new DbContextOptionsBuilder<IdentityContext>();
+    optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=E_Commerce;Integrated Security=True;Encrypt=false;MultipleActiveResultSets=true");
+
+    IdentityContext context = new IdentityContext(optionsBuilder.Options );
+
+    // Get the UserManager instance from the HttpContext
+    //var userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
     string userId = string.Empty;
-
-    // Get the current user's identity
-    var identity = User.Identity;
-
-    if (identity != null)
+    FavouriteItemsRelation itemRelation = new FavouriteItemsRelation();
+    if (User != null)
     {
-        // Get the user ID claim
-        var userIdClaim = identity.FindFirst(ClaimTypes.NameIdentifier);
+        //@if (SignInManager.IsSignedIn(User))
+        // Get the currently logged in user
+        userId = User.Claims.ToList()[0].Value;
+        Console.WriteLine(userId);
+        Trace.WriteLine(userId);
 
-        if (userIdClaim != null)
-        {
-            // Get the user ID
-            userId = userIdClaim.Value;
-        }
+        //itemRelation.ProductId = 1;
+        itemRelation.E_CommerceUserId = userId;
+        itemRelation.Product = new Product();
+        itemRelation.E_CommerceUser = new E_CommerceUser();
     }
+    else
+        Trace.WriteLine("no user");
 }
 <html>
 
@@ -178,24 +195,7 @@
                                                     <div class="product__item__pic set-bg">
                                                         <img class="product__item__pic" src=@Html.DisplayFor(modelItem => item.ImagesString) alt="">
                                                         <ul class="product__hover">
-                                                            <script>
-                                                                function addToFavourites() {
-                                                                @Console.WriteLine((ClaimsIdentity)User.Identity);
-                                                                @Console.WriteLine((ClaimsIdentity)User.Identity.FindFirst(ClaimTypes.NameIdentifier));
-                                                                @Console.WriteLine((ClaimsIdentity)User.Identity.FindFirst(ClaimTypes.NameIdentifier).Value);
-                                                                    if (@userId != @string.Empty) {
-                                                                reopFavourites.AddItemToFav(new FavouriteItemsRelation { ProductId = item.Id, E_CommerceUserId = userId /*"c11284432c07"*/ });
-                                                                        var heartIcon = document.getElementById("heart-icon");
-                                                                        heartIcon.src = "~/assets/img/icon/redHeart.png";
-                                                                    }
-                                                                    else {
-                                                                        alert("Please log in to continue.");
-                                                                    }
-                                                                }
-                                                            </script>
-
-
-                                                            <li><button onclick="addToFavourites()"><img id="heart-icon" src="~/assets/img/icon/heart.png" alt=""></button></li>
+                                                            @itemRelation.ProductId = @item.Id;
                                                         </ul>
                                                     </div>
                                                     <div class="product__item__text">
