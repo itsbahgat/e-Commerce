@@ -1,0 +1,253 @@
+﻿@model E_Commerce.Areas.Products.Models.Product
+
+
+@{
+    ViewData["Title"] = "Edit";
+    var reopFavourites = ViewBag.favRepo;
+}
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Male_Fashion Template">
+    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Products ~</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/assets/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/assets/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/assets/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="~/assets/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/assets/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/assets/css/style.css" type="text/css">
+
+
+</head>
+<body>
+    <section class="shop spad">
+
+        <div class="container">
+            <img src="~/assets/img/banner/banner-4.jpg" style="height:300px;width:100%;" />
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="shop__sidebar">
+                        <div class="shop__sidebar__search">
+                            <form action="#">
+                                <input type="text" placeholder="Search...">
+                                <button type="submit"><span class="icon_search"></span></button>
+                            </form>
+                        </div>
+
+                        <div class="shop__sidebar__accordion">
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseOne">Categories</a>
+                                    </div>
+                                    <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__categories">
+                                                <ul class="nice-scroll">
+                                                    @foreach (var cat in ViewBag.cats)
+                                                    {
+                                                        <li> @Html.ActionLink($"{cat}", "DetailsByCategory", "Product", new { category = cat}, null)</li>
+                                                    }
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseThree">Filter Price</a>
+                                    </div>
+                                    <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__price">
+                                                <ul>
+                                                    <li><a href="#">$0.00 - $50.00</a></li>
+                                                    <li><a href="#">$50.00 - $100.00</a></li>
+                                                    <li><a href="#">$100.00 - $150.00</a></li>
+                                                    <li><a href="#">$150.00 - $200.00</a></li>
+                                                    <li><a href="#">$200.00 - $250.00</a></li>
+                                                    <li><a href="#">250.00+</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseFour">Size</a>
+                                    </div>
+                                    <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__size">
+                                                <label for="xs">
+                                                    xs
+                                                    <input type="radio" id="xs">
+                                                </label>
+                                                <label for="sm">
+                                                    s
+                                                    <input type="radio" id="sm">
+                                                </label>
+                                                <label for="md">
+                                                    m
+                                                    <input type="radio" id="md">
+                                                </label>
+                                                <label for="xl">
+                                                    xl
+                                                    <input type="radio" id="xl">
+                                                </label>
+                                                <label for="2xl">
+                                                    2xl
+                                                    <input type="radio" id="2xl">
+                                                </label>
+                                                <label for="xxl">
+                                                    xxl
+                                                    <input type="radio" id="xxl">
+                                                </label>
+                                                <label for="3xl">
+                                                    3xl
+                                                    <input type="radio" id="3xl">
+                                                </label>
+                                                <label for="4xl">
+                                                    4xl
+                                                    <input type="radio" id="4xl">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseFive">Colors</a>
+                                    </div>
+                                    <div id="collapseFive" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__color">
+                                                <label class="c-1" for="sp-1">
+                                                    <input type="radio" id="sp-1">
+                                                </label>
+                                                <label class="c-2" for="sp-2">
+                                                    <input type="radio" id="sp-2">
+                                                </label>
+                                                <label class="c-3" for="sp-3">
+                                                    <input type="radio" id="sp-3">
+                                                </label>
+                                                <label class="c-4" for="sp-4">
+                                                    <input type="radio" id="sp-4">
+                                                </label>
+                                                <label class="c-5" for="sp-5">
+                                                    <input type="radio" id="sp-5">
+                                                </label>
+                                                <label class="c-6" for="sp-6">
+                                                    <input type="radio" id="sp-6">
+                                                </label>
+                                                <label class="c-7" for="sp-7">
+                                                    <input type="radio" id="sp-7">
+                                                </label>
+                                                <label class="c-8" for="sp-8">
+                                                    <input type="radio" id="sp-8">
+                                                </label>
+                                                <label class="c-9" for="sp-9">
+                                                    <input type="radio" id="sp-9">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="col-lg-9">
+                        <div class="row">
+
+                            <h4>Edit Product</h4>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <form asp-action="Edit">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <input type="hidden" asp-for="Id" />
+                                        <div class="form-group">
+                                            <label asp-for="Name" class="control-label"></label>
+                                            <input asp-for="Name" class="form-control" />
+                                            <span asp-validation-for="Name" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Category" class="control-label"></label>
+                                            <input asp-for="Category" class="form-control" />
+                                            <span asp-validation-for="Category" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Description" class="control-label"></label>
+                                            <input asp-for="Description" class="form-control" />
+                                            <span asp-validation-for="Description" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Price" class="control-label"></label>
+                                            <input asp-for="Price" class="form-control" />
+                                            <span asp-validation-for="Price" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="ImagesString" class="control-label"></label>
+                                            <input asp-for="ImagesString" class="form-control" />
+                                            <img class="product__item__pic" src="@Model.ImagesString" alt="">
+                                            <span asp-validation-for="ImagesString" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" value="Save" class="btn btn-primary" />
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div>
+                                <a asp-action="Index">Back to List</a>
+                            </div>
+
+                            @section Scripts {
+                                @{
+                                    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+                                }
+                            }
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="product__pagination">
+                                        <a class="active" href="#">1</a>
+                                        <a href="#">2</a>
+                                        <a href="#">3</a>
+                                        <span>...</span>
+                                        <a href="#">21</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </section>
+    <script src="~/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/jquery.nice-select.min.js"></script>
+    <script src="~/assets/js/jquery.nicescroll.min.js"></script>
+    <script src="~/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/assets/js/jquery.countdown.min.js"></script>
+    <script src="~/assets/js/jquery.slicknav.js"></script>
+    <script src="~/assets/js/mixitup.min.js"></script>
+    <script src="~/assets/js/owl.carousel.min.js"></script>
+    <script src="~/assets/js/main.js"></script>
+</body>
+</html>

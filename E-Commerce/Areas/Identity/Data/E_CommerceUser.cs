@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using E_Commerce.Areas.FavouriteItems.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace E_Commerce.Areas.Identity.Data;
@@ -12,18 +13,21 @@ namespace E_Commerce.Areas.Identity.Data;
 public class E_CommerceUser : IdentityUser
 {
 
-    [MaxLength(50)]
-    public string? FirstName { get; set; }
+    [Required , MaxLength(50)]
+    public string FirstName { get; set; }
 
-    [MaxLength(50)]
-    public string? LastName { get; set; }
+    [Required , MaxLength(50)]
+    public string LastName { get; set; }
 
     
     [RegularExpression(@"^01[0125][0-9]{8}$", ErrorMessage = "Please enter a valid phone number.")]
+    [AllowNull]
     public string? PhoneNumber { get; set; }
 
-    
-    public string? Address { get; set; }
+    public string Address { get; set; }
+
+    public virtual ICollection<FavouriteItemsRelation> FavouriteItemsRelation { get; set; }
+
 
 }
 

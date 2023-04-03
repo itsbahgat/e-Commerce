@@ -9,13 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\FavouriteItems\Data\" />
     <Folder Include="wwwroot\assets\img\icons\" />
     <Folder Include="wwwroot\assets\img\illustrations\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="7.0.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="7.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.4" />

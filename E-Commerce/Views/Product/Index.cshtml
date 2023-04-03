@@ -1,0 +1,239 @@
+﻿@using E_Commerce.Areas.FavouriteItems.Models;
+@using E_Commerce.Areas.Identity.Data;
+@using System.Security.Claims;
+@model IEnumerable<E_Commerce.Areas.Products.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    var reopFavourites = ViewBag.favRepo;
+    var prodNum = Model.Count() % 12;
+
+    string userId = string.Empty;
+
+    // Get the current user's identity
+    var identity = User.Identity;
+
+    if (identity != null)
+    {
+        // Get the user ID claim
+        var userIdClaim = identity.FindFirst(ClaimTypes.NameIdentifier);
+
+        if (userIdClaim != null)
+        {
+            // Get the user ID
+            userId = userIdClaim.Value;
+        }
+    }
+}
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Male_Fashion Template">
+    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Products ~</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/assets/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/assets/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/assets/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="~/assets/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/assets/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/assets/css/style.css" type="text/css">
+
+
+</head>
+<body>
+    <section class="shop spad">
+
+        <div class="container">
+            <img src="~/assets/img/banner/banner-4.jpg" style="height:300px;width:100%;" />
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="shop__sidebar">
+                        <div class="shop__sidebar__search">
+                            <form action="#">
+                                <input type="text" placeholder="Search...">
+                                <button type="submit"><span class="icon_search"></span></button>
+                            </form>
+                        </div>
+
+                        <div class="shop__sidebar__accordion">
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseOne">Categories</a>
+                                    </div>
+                                    <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__categories">
+                                                <ul class="nice-scroll">
+                                                    @foreach (var cat in ViewBag.cats)
+                                                    {
+                                                        <li> @Html.ActionLink($"{cat}", "DetailsByCategory", "Product", new { category = cat}, null)</li>
+                                                    }
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseThree">Filter Price</a>
+                                    </div>
+                                    <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__price">
+                                                <ul>
+                                                    <li> @Html.ActionLink("$0.00 - $50.00", "GetByPriceRange", "Product", new { sm = 0, lg=50}, null)</li>
+                                                    <li> @Html.ActionLink("$50.00 - $100.00", "GetByPriceRange", "Product", new {sm = 50, lg=100 }, null)</li>
+                                                    <li> @Html.ActionLink("$100.00 - $150.00", "GetByPriceRange", "Product", new {sm = 100, lg=150 }, null)</li>
+                                                    <li> @Html.ActionLink("$150.00 - $200.00", "GetByPriceRange", "Product", new {sm = 150, lg=200 }, null)</li>
+                                                    <li> @Html.ActionLink("$200.00 - $250.00", "GetByPriceRange", "Product", new {sm = 200, lg=250}, null)</li>
+                                                    <li> @Html.ActionLink("$250.00+", "GetByPriceRange", "Product", new { sm = 50, lg=int.MaxValue}, null)</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseFive">Colors</a>
+                                    </div>
+                                    <div id="collapseFive" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__color">
+                                                <label class="c-1" for="sp-1">
+                                                    <input type="radio" id="sp-1">
+                                                </label>
+                                                <label class="c-2" for="sp-2">
+                                                    <input type="radio" id="sp-2">
+                                                </label>
+                                                <label class="c-3" for="sp-3">
+                                                    <input type="radio" id="sp-3">
+                                                </label>
+                                                <label class="c-4" for="sp-4">
+                                                    <input type="radio" id="sp-4">
+                                                </label>
+                                                <label class="c-5" for="sp-5">
+                                                    <input type="radio" id="sp-5">
+                                                </label>
+                                                <label class="c-6" for="sp-6">
+                                                    <input type="radio" id="sp-6">
+                                                </label>
+                                                <label class="c-7" for="sp-7">
+                                                    <input type="radio" id="sp-7">
+                                                </label>
+                                                <label class="c-8" for="sp-8">
+                                                    <input type="radio" id="sp-8">
+                                                </label>
+                                                <label class="c-9" for="sp-9">
+                                                    <input type="radio" id="sp-9">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <h1>All Products</h1>
+
+                    @*<p>
+                    <a asp-action="Create">Create New</a>
+                    </p>*@
+                    <div class="col-lg-9">
+                        <div class="shop__product__option">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="shop__product__option__left">
+                                        <p>
+                                            Showing @prodNum of @Model.Count() results
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <table class="table">
+
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr>
+                                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                                <div class="product__item">
+                                                    <div class="product__item__pic set-bg">
+                                                        <img class="product__item__pic" src=@Html.DisplayFor(modelItem => item.ImagesString) alt="">
+                                                        <ul class="product__hover">
+                                                            <script>
+                                                                function addToFavourites() {
+                                                                @Console.WriteLine((ClaimsIdentity)User.Identity);
+                                                                @Console.WriteLine((ClaimsIdentity)User.Identity.FindFirst(ClaimTypes.NameIdentifier));
+                                                                @Console.WriteLine((ClaimsIdentity)User.Identity.FindFirst(ClaimTypes.NameIdentifier).Value);
+                                                                    if (@userId != @string.Empty) {
+                                                                reopFavourites.AddItemToFav(new FavouriteItemsRelation { ProductId = item.Id, E_CommerceUserId = userId /*"c11284432c07"*/ });
+                                                                        var heartIcon = document.getElementById("heart-icon");
+                                                                        heartIcon.src = "~/assets/img/icon/redHeart.png";
+                                                                    }
+                                                                    else {
+                                                                        alert("Please log in to continue.");
+                                                                    }
+                                                                }
+                                                            </script>
+
+
+                                                            <li><button onclick="addToFavourites()"><img id="heart-icon" src="~/assets/img/icon/heart.png" alt=""></button></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="product__item__text">
+                                                        <h6>@Html.DisplayFor(modelItem => item.Name)</h6>
+                                                        <a href="#" class="add-cart">+ Add To Cart</a>
+                                                        <h5>@Html.DisplayFor(modelItem => item.Price)</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="product__pagination">
+                                        <a class="active" href="#">1</a>
+                                        <a href="#">2</a>
+                                        <a href="#">3</a>
+                                        <span>...</span>
+                                        <a href="#">21</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </section>
+    <script src="~/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/jquery.nice-select.min.js"></script>
+    <script src="~/assets/js/jquery.nicescroll.min.js"></script>
+    <script src="~/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/assets/js/jquery.countdown.min.js"></script>
+    <script src="~/assets/js/jquery.slicknav.js"></script>
+    <script src="~/assets/js/mixitup.min.js"></script>
+    <script src="~/assets/js/owl.carousel.min.js"></script>
+    <script src="~/assets/js/main.js"></script>
+</body>
+</html>
