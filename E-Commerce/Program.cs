@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using E_Commerce.Models;
 using E_Commerce.Areas.Products.RepoServices;
 using E_Commerce.Interfaces;
+using E_Commerce.Areas.Admins.RepoServices;
 
 namespace E_Commerce
 {
@@ -33,8 +34,11 @@ namespace E_Commerce
             builder.Services.AddRazorPages();
 
             builder.Services.AddTransient<IEmailSender, EmailSender>();
-            builder.Services.AddTransient<IProductRepository, ProductRepoService>();
             builder.Services.AddTransient<IPhotoService, PhotoService>();
+
+
+            builder.Services.AddTransient<IProductRepository, ProductRepoService>();
+            builder.Services.AddTransient<IAdminRepository, AdminRepoService>();
 
 
 
