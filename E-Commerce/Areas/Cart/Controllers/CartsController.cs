@@ -24,12 +24,14 @@ namespace E_Commerce.Areas.CartNS.Controllers
         }
 
 
-        [HttpGet("{customerId}/Carts")]
-        public async Task<IActionResult> GetCartsForCustomer(string customerId)
+        [HttpGet("{customerId}/Orders")]
+        public async Task<IActionResult> GetOrdersForCustomer(string customerId)
         {
             var carts = await _context.Carts
-                .Where(c => c.E_CommerceUserId == customerId)
-                .ToListAsync();
+               .Include(c => c.CartItems)
+               .Where(c => c.E_CommerceUserId == customerId && c.IsCompleted)
+               .ToListAsync();
+
 
             if (carts == null)
             {
@@ -38,6 +40,31 @@ namespace E_Commerce.Areas.CartNS.Controllers
 
             return Ok(carts);
         }
+
+        [HttpGet("{customerId}/Cart")]
+        public async Task<IActionResult> GetCartForCustomer(string customerId)
+        {
+            var cartItems = await _context.CartItems
+                .Where(c => c.Cart.E_CommerceUserId == customerId && !c.Cart.IsCompleted)
+                .ToListAsync();
+
+            if (cartItems == null || !cartItems.Any())
+            {
+                return NotFound();
+            }
+
+            var response = cartItems.Select(c => new {
+                c.Id,
+                c.Name,
+                c.Price,
+                c.imageString,
+                c.Quantity,
+                c.CartId
+            });
+
+            return Ok(response);
+        }
+
 
         [HttpPost("{customerId}/AddToCart/{productId}")]
         public async Task<IActionResult> AddToCart(string customerId, int productId, int quantity)
