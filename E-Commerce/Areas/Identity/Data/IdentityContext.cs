@@ -1,5 +1,4 @@
 ﻿using E_Commerce.Areas.FavouriteItems.Models;
-﻿using E_Commerce.Areas.CartNS.Models;
 using E_Commerce.Areas.Identity.Data;
 using E_Commerce.Areas.Products.Models;
 using Microsoft.AspNetCore.Identity;
@@ -40,11 +39,4 @@ public class IdentityContext : IdentityDbContext<E_CommerceUser>
             .WithMany(b => b.FavouriteItemsRelation)
             .HasForeignKey(ab => ab.ProductId);
     }
-
-    public DbSet<Cart> Carts { get; set; }
-    public DbSet<E_CommerceUser> E_CommerceUsers { get; set; }
-    public DbSet<CartItem> CartItems { get; set; }
-    public DbSet<Product> Products { get; set; }
-
-
 }
