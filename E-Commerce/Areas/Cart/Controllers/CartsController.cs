@@ -66,7 +66,7 @@ namespace E_Commerce.Areas.CartNS.Controllers
         }
 
 
-        [HttpPost("{customerId}/AddToCart/{productId}")]
+        [HttpPost("{customerId}/AddToCart/{productId}/{quantity}")]
         public async Task<IActionResult> AddToCart(string customerId, int productId, int quantity)
         {
             // Find the cart for the customer
