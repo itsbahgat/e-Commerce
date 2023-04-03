@@ -4,6 +4,7 @@ using E_Commerce.Areas.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Commerce.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    partial class IdentityContextModelSnapshot : ModelSnapshot
+    [Migration("20230402195918_updateimg")]
+    partial class updateimg
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +24,6 @@ namespace E_Commerce.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
 
             modelBuilder.Entity("E_Commerce.Areas.FavouriteItems.Models.FavouriteItemsRelation", b =>
                 {
@@ -36,61 +38,6 @@ namespace E_Commerce.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("FavouriteItemsRelations");
-            modelBuilder.Entity("E_Commerce.Areas.CartNS.Models.Cart", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("E_CommerceUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("IsCompleted")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("E_CommerceUserId");
-
-                    b.ToTable("Carts");
-                });
-
-            modelBuilder.Entity("E_Commerce.Areas.CartNS.Models.CartItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("imageString")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("productID")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartId");
-
-                    b.ToTable("CartItems");
                 });
 
             modelBuilder.Entity("E_Commerce.Areas.Identity.Data.E_CommerceUser", b =>
@@ -342,21 +289,13 @@ namespace E_Commerce.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-
             modelBuilder.Entity("E_Commerce.Areas.FavouriteItems.Models.FavouriteItemsRelation", b =>
                 {
                     b.HasOne("E_Commerce.Areas.Identity.Data.E_CommerceUser", "E_CommerceUser")
                         .WithMany("FavouriteItemsRelation")
-
-            modelBuilder.Entity("E_Commerce.Areas.CartNS.Models.Cart", b =>
-                {
-                    b.HasOne("E_Commerce.Areas.Identity.Data.E_CommerceUser", "E_CommerceUser")
-                        .WithMany("Carts")
-
                         .HasForeignKey("E_CommerceUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
 
                     b.HasOne("E_Commerce.Areas.Products.Models.Product", "Product")
                         .WithMany("FavouriteItemsRelation")
@@ -367,20 +306,6 @@ namespace E_Commerce.Migrations
                     b.Navigation("E_CommerceUser");
 
                     b.Navigation("Product");
-
-                    b.Navigation("E_CommerceUser");
-                });
-
-            modelBuilder.Entity("E_Commerce.Areas.CartNS.Models.CartItem", b =>
-                {
-                    b.HasOne("E_Commerce.Areas.CartNS.Models.Cart", "Cart")
-                        .WithMany("CartItems")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cart");
-
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -434,7 +359,6 @@ namespace E_Commerce.Migrations
                         .IsRequired();
                 });
 
-
             modelBuilder.Entity("E_Commerce.Areas.Identity.Data.E_CommerceUser", b =>
                 {
                     b.Navigation("FavouriteItemsRelation");
@@ -443,15 +367,6 @@ namespace E_Commerce.Migrations
             modelBuilder.Entity("E_Commerce.Areas.Products.Models.Product", b =>
                 {
                     b.Navigation("FavouriteItemsRelation");
-
-            modelBuilder.Entity("E_Commerce.Areas.CartNS.Models.Cart", b =>
-                {
-                    b.Navigation("CartItems");
-                });
-
-            modelBuilder.Entity("E_Commerce.Areas.Identity.Data.E_CommerceUser", b =>
-                {
-                    b.Navigation("Carts");
                 });
 #pragma warning restore 612, 618
         }

@@ -7,7 +7,8 @@ namespace E_Commerce.Areas.Products.RepoServices
         public List<Product> GetAll();
         public Product GetDetailsByID(int id);
         public Product GetDetailsByName(string name);
-        public Product GetDetailsByCategory(string category);
+        public List<Product> GetDetailsByCategory(string category);
+        public List<Product> GetByPriceRange(int sm , int lg);
         public void Insert(Product product);
         public void UpdateProduct(int id, Product admin);
         public void DeleteProduct(int id);
