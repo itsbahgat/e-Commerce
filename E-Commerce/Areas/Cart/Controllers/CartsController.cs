@@ -101,6 +101,89 @@ namespace E_Commerce.Areas.CartNS.Controllers
             return Ok(cart);
         }
 
+        [HttpDelete("{customerId}/RemoveFromCart/{productId}/{quantity}")]
+        public async Task<IActionResult> RemoveFromCart(string customerId, int productId, int quantity)
+        {
+            // Find the cart for the customer
+            var cart = await _context.Carts
+                .Include(c => c.CartItems)
+                .FirstOrDefaultAsync(c => c.E_CommerceUserId == customerId && !c.IsCompleted);
+
+            // If no cart exists, return a not found result
+            if (cart == null)
+            {
+                return NotFound();
+            }
+
+            // Find the cart item for the product
+            var cartItem = cart.CartItems.FirstOrDefault(ci => ci.productID == productId);
+
+            // If the cart item doesn't exist, return a not found result
+            if (cartItem == null)
+            {
+                return NotFound();
+            }
+
+            // Remove the specified quantity from the cart item
+            cart.RemoveItem(productId, quantity);
+
+            // Save changes to the database
+            await _context.SaveChangesAsync();
+
+            // Return the updated cart
+            return Ok(cart);
+        }
+
+        [HttpDelete("{customerId}/clearCart")]
+        public async Task<IActionResult> clearCart(string customerId)
+        {
+            // Find the cart for the customer
+            var cart = await _context.Carts
+                .Include(c => c.CartItems)
+                .FirstOrDefaultAsync(c => c.E_CommerceUserId == customerId && !c.IsCompleted);
+
+            // If no cart exists, return a not found result
+            if (cart == null)
+            {
+                return NotFound();
+            }
+
+            // Remove all items from the cart
+            cart.RemoveAllItems();
+
+            // Save changes to the database
+            await _context.SaveChangesAsync();
+
+            // Return the updated cart
+            return Ok(cart);
+        }
+
+        [HttpPost("{customerId}/Checkout")]
+        public async Task<IActionResult> Checkout(string customerId)
+        {
+            // Find the cart for the customer
+            var cart = await _context.Carts
+                .Include(c => c.CartItems)
+                .FirstOrDefaultAsync(c => c.E_CommerceUserId == customerId && !c.IsCompleted);
+
+            // If no cart exists, return a not found result
+            if (cart == null)
+            {
+                return NotFound();
+            }
+
+            // Perform the checkout process
+            cart.Checkout();
+
+            // Save changes to the database
+            await _context.SaveChangesAsync();
+
+            // Return a success result
+            return Ok();
+        }
+
+
+
 
     }
 }

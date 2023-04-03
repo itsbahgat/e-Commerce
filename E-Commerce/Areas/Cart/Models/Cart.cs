@@ -32,7 +32,8 @@ namespace E_Commerce.Areas.CartNS.Models
                 throw new ArgumentOutOfRangeException(nameof(quantity), "Quantity must be greater than 0.");
             }
 
-            var existingCartItem = CartItems.FirstOrDefault(x => x.Id == product.Id);
+            var existingCartItem = CartItems.FirstOrDefault(x => x.productID == product.Id);
+
             if (existingCartItem != null)
             {
                 existingCartItem.Quantity += quantity;
@@ -41,7 +42,7 @@ namespace E_Commerce.Areas.CartNS.Models
             {
                 var newCartItem = new CartItem
                 {
-                    //Id = product.Id,
+                    productID = product.Id,
                     Name = product.Name,
                     Price = product.Price,
                     imageString = product.ImagesString,
@@ -49,33 +50,37 @@ namespace E_Commerce.Areas.CartNS.Models
                     CartId = this.Id,
                    // Cart = this // Set the Cart property to the current Cart instance
                 };
+
                 CartItems.Add(newCartItem);
             }
         }
 
-        public void RemoveItem(int productId)
+        public void RemoveItem(int productId, int quantity)
         {
-            var existingCartItem = CartItems.FirstOrDefault(x => x.Id == productId);
+            var existingCartItem = CartItems.FirstOrDefault(x => x.productID == productId);
             if (existingCartItem != null)
             {
-                CartItems.Remove(existingCartItem);
+                if (existingCartItem.Quantity > quantity)
+                {
+                    existingCartItem.Quantity -= quantity;
+                }
+                else
+                {
+                    CartItems.Remove(existingCartItem);
+                }
             }
-
-            /*
-            // Also remove the corresponding CartItem from the database
-            var context = new databaseContext();
-            context.CartItems.Remove(existingCartItem);
-            context.SaveChanges();*/
         }
 
-        public void Clear()
+
+        public void RemoveAllItems()
         {
             CartItems.Clear();
         }
 
+
         public void Checkout()
         {
-            IsCompleted = true;
+           IsCompleted = true;
             // Additional logic for order completion (e.g. payment processing, shipping, etc.) could be added here
         }
     }
@@ -88,6 +93,8 @@ namespace E_Commerce.Areas.CartNS.Models
         public string imageString { get; set; }
 
         public int Quantity { get; set; }
+
+        public int productID { get; set; }
 
         public int CartId { get; set; }
 
