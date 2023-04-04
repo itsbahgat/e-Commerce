@@ -1,44 +1,68 @@
 ﻿@model E_Commerce.ViewModels.CreateProductViewModel
 
-
 @{
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="col-md-6">
+        <form method="post" asp-action="Create" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Product Name</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
 
-<div class="w-50 container d-flex justify-content-center align-items-center">
-    <form method="post" asp-action="Create" enctype="multipart/form-data">
-        <div class="form-group">
-            <label asp-for="Name" class="control-label">Product Name</label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
+            <div class="form-group">
+                <label asp-for="Category" class="control-label">Product Category</label>
+                <input asp-for="Category" class="form-control" />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
 
-        <div class="form-group">
-            <label asp-for="Category" class="control-label">Product Category</label>
-            <input asp-for="Category" class="form-control" />
-            <span asp-validation-for="Category" class="text-danger"></span>
-        </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">Product Description</label>
+                <<textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
 
-        <div class="form-group">
-            <label asp-for="Description" class="control-label">Product Description</label>
-            <textarea asp-for="Description" class="form-control"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label">Product Price</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                    </div>
+                    <input asp-for="Price" class="form-control" />
+                </div>
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
 
-        <div class="form-group">
-            <label asp-for="Price" class="control-label">Product Price</label>
-            <input asp-for="Price" class="form-control" />
-            <span asp-validation-for="Price" class="text-danger"></span>
-        </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label">Product Image</label>
+                <div class="custom-file">
+                    <input asp-for="Image" type="file" class="custom-file-input" id="Image" name="Image" />
 
-        <div class="col">
-            <input asp-for="Image" type="file" class="form-control form-control-lg" placeholder="Image" />
-            <span asp-validation-for="Image" class="text-danger"></span>
-        </div>
+                    <label class="custom-file-label" for="Image" id="ImageLabel">Choose file</label>
+                </div>
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
 
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Create Product</button>
-        </div>
-    </form>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Create Product</button>
+            </div>
+        </form>
+    </div>
 </div>
+
+
+<script>
+    // Get the file input element and the label element
+    const fileInput = document.querySelector('#Image');
+    const label = document.querySelector('#ImageLabel');
+
+    // Add an event listener to the file input element
+    fileInput.addEventListener('change', () => {
+        // Get the file name and set it as the label text
+        const fileName = fileInput.value.split('\\').pop();
+        label.textContent = fileName;
+    });
+</script>
