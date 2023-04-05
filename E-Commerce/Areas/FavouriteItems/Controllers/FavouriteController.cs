@@ -23,7 +23,8 @@ namespace E_Commerce.Areas.FavouriteList.Controllers
         [Route("Favourite/CreateFav/{custId}/{prodId}")]
         public ActionResult CreateFav(string custId, int prodId)
         {
-            Console.WriteLine("inside get create fav");
+            ViewBag.Customers = favouritesRepository.GetAllCustomers();
+            ViewBag.Products = favouritesRepository.GetAllProducts();
             try
             {
                 var favourite = new FavouriteItemsRelation { ProductId = prodId, E_CommerceUserId = custId };
