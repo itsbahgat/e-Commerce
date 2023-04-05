@@ -65,6 +65,10 @@ namespace E_Commerce
             builder.Services.AddRazorPages();
 
             builder.Services.AddTransient<IEmailSender, EmailSender>();
+            builder.Services.AddTransient<IPhotoService, PhotoService>();
+
+            //builder.Services.AddTransient<IAdminRepository, AdminRepoService>();
+            builder.Services.AddTransient<IProductRepository, ProductRepoService>();
 
 
 
@@ -90,6 +94,17 @@ namespace E_Commerce
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+            app.MapControllerRoute(
+                    name: "adminProducts",
+                    pattern: "Admin/product/all",
+                    defaults: new { controller = "Product", action = "GetAllProductsForAdmin" });
+
+            app.MapControllerRoute(
+                    name: "adminProducts",
+                    pattern: "Admin/product/create",
+                    defaults: new { controller = "Product", action = "Create" });
 
             app.Run();
         }

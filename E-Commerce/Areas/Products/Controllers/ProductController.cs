@@ -2,8 +2,11 @@
 using E_Commerce.Areas.FavouriteItems.RepoServices;
 using E_Commerce.Areas.Products.Models;
 using E_Commerce.Areas.Products.RepoServices;
+using E_Commerce.Interfaces;
+using E_Commerce.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Stripe;
 
 namespace E_Commerce.Areas.Products.Controllers
 {
@@ -11,11 +14,14 @@ namespace E_Commerce.Areas.Products.Controllers
     {
         private readonly IProductRepository productRepository;
         private readonly IFavouritesRepository favouritesRepository;
+        private readonly IPhotoService photoService;
 
         public ProductController(IProductRepository productRepository, IFavouritesRepository favouritesRepository)
         {
             this.productRepository = productRepository;
             this.favouritesRepository = favouritesRepository;
+            this.favouritesRepository = favouritesRepository;
+            this.photoService = photoService;
         }
         // GET: ProductController
         [Route("Product")]
@@ -69,6 +75,7 @@ namespace E_Commerce.Areas.Products.Controllers
 
 
         // GET: ProductController/Create
+        [Route("Admin/product/create")]
         public ActionResult Create()
         {
 
@@ -76,51 +83,100 @@ namespace E_Commerce.Areas.Products.Controllers
             ViewBag.cats = prods.Select(p => p.Category).Distinct();
             ViewBag.favRepo = favouritesRepository;
             ViewBag.products = productRepository.GetAll();
-            return View();
+            CreateProductViewModel viewModel = new CreateProductViewModel();
+            return View(viewModel);
         }
 
         // POST: ProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Product product)
+        [Route("Admin/product/create")]
+        public async Task<IActionResult> Create(CreateProductViewModel productVM)
         {
-            ViewBag.products = productRepository.GetAll();
-            try
+
+            if (ModelState.IsValid)
             {
+                var result = await photoService.UploadPhotoAsync(productVM.Image);
+
+                var product = new Models.Product
+                {
+                    Name = productVM.Name,
+                    Category = productVM.Category,
+                    Price = productVM.Price,
+                    Description = productVM.Description,
+                    ImagesString = result.Url.ToString(),
+                   
+                };
                 productRepository.Insert(product);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("GetAllProductsForAdmin", "Product", "");
+
             }
-            catch
+            else
             {
-                return View();
+                ModelState.AddModelError("", "Photo upload failed");
             }
+
+           return View(productVM);
         }
 
-        // GET: ProductController/Edit/5
         public ActionResult Edit(int id)
         {
             var prods = productRepository.GetAll();
             ViewBag.cats = prods.Select(p => p.Category).Distinct();
             ViewBag.favRepo = favouritesRepository;
             ViewBag.products = productRepository.GetAll();
-            return View(productRepository.GetDetailsByID(id));
+            var p = productRepository.GetDetailsByID(id);
+            EditProductViewModel viewModel = new()
+            {
+                Id = p.Id,
+                Price = p.Price,
+                Description = p.Description,
+                Category = p.Category,
+                Name = p.Name,
+                URL = p.ImagesString
+            };
+
+            return View(viewModel);
         }
 
-        // POST: ProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Product product)
+        public async Task<ActionResult> Edit(EditProductViewModel productVM)
         {
-            try
-            {
-                productRepository.UpdateProduct(id, product);
-                return RedirectToAction(nameof(Index));
+
+            try {
+                var imageUrl = productVM.URL;
+
+                if (productVM.Image != null) // if a new image was uploaded
+                {
+                    var result = await photoService.UploadPhotoAsync(productVM.Image);
+                    imageUrl = result.Url.ToString(); // update the image URL
+                }
+                else // if no new image was uploaded
+                {
+                    var Product = productRepository.GetDetailsByID(productVM.Id);
+                    imageUrl = Product.ImagesString; // set the image URL to the current value
+                }
+
+                var product = new Models.Product
+                {
+                    Id = productVM.Id,
+                    Name = productVM.Name,
+                    Category = productVM.Category,
+                    Price = productVM.Price,
+                    Description = productVM.Description,
+                    ImagesString = imageUrl
+                };
+
+                productRepository.UpdateProduct(productVM.Id, product);
+                return RedirectToAction("GetAllProductsForAdmin", "Product", "");
             }
             catch
             {
                 return View();
             }
         }
+
 
         // GET: ProductController/Delete/5
         public ActionResult Delete(int id)
@@ -137,12 +193,21 @@ namespace E_Commerce.Areas.Products.Controllers
             try
             {
                 productRepository.DeleteProduct(id);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("GetAllProductsForAdmin", "Product", "");
             }
             catch
             {
                 return View();
             }
         }
+
+
+        [Route("Admin/product/all")]
+        public IActionResult GetAllProductsForAdmin()
+        {
+            var products = productRepository.GetAll();
+            return View(products);
+        }
+
     }
 }

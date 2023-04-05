@@ -1,8 +1,6 @@
-﻿using E_Commerce.Areas.Admins.Models;
-using E_Commerce.Areas.Identity.Data;
+﻿using E_Commerce.Areas.Identity.Data;
 using E_Commerce.Areas.Products.Models;
 using E_Commerce.Models;
-using Stripe;
 
 namespace E_Commerce.Areas.Products.RepoServices
 {
@@ -62,10 +60,13 @@ namespace E_Commerce.Areas.Products.RepoServices
                 return;
             updatedProduct.Price = product.Price;
             updatedProduct.Category = product.Category;
+            updatedProduct.Name = product.Name;
+            updatedProduct.Description = product.Description;
             // not sure about the list in the views, we need to add or remove image link
             updatedProduct.ImagesString = product.ImagesString;
             //updatedProduct.Images = product.Images;
             context.SaveChanges();
+            
         }
 
         List<Models.Product> IProductRepository.GetAll()
@@ -88,6 +89,5 @@ namespace E_Commerce.Areas.Products.RepoServices
                 return new List<Models.Product>();
             return products;
         }
-
     }
 }
