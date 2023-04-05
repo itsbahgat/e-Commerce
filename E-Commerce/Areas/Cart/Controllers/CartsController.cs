@@ -77,6 +77,19 @@ namespace E_Commerce.Areas.CartNS.Controllers
         [HttpGet("{customerId}/AddToCart/{productId}/{quantity}")]
         public async Task<IActionResult> AddToCartByGet(string customerId, int productId, int quantity)
         {
+            // Find the cart for the customer
+            var cart = await _context.Carts
+                .Include(c => c.CartItems)
+                .FirstOrDefaultAsync(c => c.E_CommerceUserId == customerId && !c.IsCompleted);
+
+            // If no cart exists, create a new one
+            if (cart == null)
+            {
+                cart = new Models.Cart { E_CommerceUserId = customerId, IsCompleted = false };
+                _context.Carts.Add(cart);
+                await _context.SaveChangesAsync();
+
+            }
             return await AddToCart(customerId, productId, quantity);
         }
 

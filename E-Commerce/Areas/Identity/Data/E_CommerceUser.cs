@@ -22,9 +22,9 @@ public class E_CommerceUser : IdentityUser
     [MaxLength(50)]
     public string? LastName { get; set; }
 
-    
-    [RegularExpression(@"^01[0125][0-9]{8}$", ErrorMessage = "Please enter a valid phone number.")]
+
     [AllowNull]
+    [RegularExpression(@"^01[0125][0-9]{8}$", ErrorMessage = "Please enter a valid phone number.")]
     public string? PhoneNumber { get; set; }
 
     public string? Address { get; set; }
