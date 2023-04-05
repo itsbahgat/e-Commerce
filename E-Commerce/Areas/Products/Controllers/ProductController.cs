@@ -1,4 +1,4 @@
-﻿using E_Commerce.Areas.Admins.RepoServices;
+﻿//using E_Commerce.Areas.Admins.RepoServices;
 using E_Commerce.Areas.FavouriteItems.RepoServices;
 using E_Commerce.Areas.Products.Models;
 using E_Commerce.Areas.Products.RepoServices;
@@ -16,7 +16,7 @@ namespace E_Commerce.Areas.Products.Controllers
         private readonly IFavouritesRepository favouritesRepository;
         private readonly IPhotoService photoService;
 
-        public ProductController(IProductRepository productRepository, IFavouritesRepository favouritesRepository)
+        public ProductController(IProductRepository productRepository, IFavouritesRepository favouritesRepository, IPhotoService photoService)
         {
             this.productRepository = productRepository;
             this.favouritesRepository = favouritesRepository;
@@ -74,6 +74,7 @@ namespace E_Commerce.Areas.Products.Controllers
         }
 
 
+
         // GET: ProductController/Create
         [Route("Admin/product/create")]
         public ActionResult Create()
@@ -105,7 +106,7 @@ namespace E_Commerce.Areas.Products.Controllers
                     Price = productVM.Price,
                     Description = productVM.Description,
                     ImagesString = result.Url.ToString(),
-                   
+
                 };
                 productRepository.Insert(product);
                 return RedirectToAction("GetAllProductsForAdmin", "Product", "");
@@ -116,7 +117,7 @@ namespace E_Commerce.Areas.Products.Controllers
                 ModelState.AddModelError("", "Photo upload failed");
             }
 
-           return View(productVM);
+            return View(productVM);
         }
 
         public ActionResult Edit(int id)
@@ -144,7 +145,8 @@ namespace E_Commerce.Areas.Products.Controllers
         public async Task<ActionResult> Edit(EditProductViewModel productVM)
         {
 
-            try {
+            try
+            {
                 var imageUrl = productVM.URL;
 
                 if (productVM.Image != null) // if a new image was uploaded
@@ -176,6 +178,8 @@ namespace E_Commerce.Areas.Products.Controllers
                 return View();
             }
         }
+
+
 
 
         // GET: ProductController/Delete/5

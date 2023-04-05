@@ -11,7 +11,7 @@ using E_Commerce.Areas.FavouriteItems.Models;
 using E_Commerce.Areas.FavouriteItems.RepoServices;
 using E_Commerce.Areas.Customers.RepoServices;
 using System.Text.Json.Serialization;
-
+using E_Commerce.Interfaces;
 
 namespace E_Commerce
 {
