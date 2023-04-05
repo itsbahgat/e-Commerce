@@ -32,7 +32,7 @@ namespace E_Commerce.Areas.Payment
             //invoice bill
             var options = new PaymentIntentCreateOptions
             {
-                Amount = 888,
+                Amount = _Amount,
                 Currency = "usd",
                 AutomaticPaymentMethods = new PaymentIntentAutomaticPaymentMethodsOptions
                 {
