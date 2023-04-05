@@ -4,6 +4,7 @@ using E_Commerce.Areas.Products.Models;
 using E_Commerce.Areas.Products.RepoServices;
 using E_Commerce.Interfaces;
 using E_Commerce.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Stripe;
@@ -76,6 +77,7 @@ namespace E_Commerce.Areas.Products.Controllers
 
 
         // GET: ProductController/Create
+        [Authorize(Roles = "Admin")]
         [Route("Admin/product/create")]
         public ActionResult Create()
         {
@@ -120,6 +122,7 @@ namespace E_Commerce.Areas.Products.Controllers
             return View(productVM);
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             var prods = productRepository.GetAll();
@@ -183,6 +186,7 @@ namespace E_Commerce.Areas.Products.Controllers
 
 
         // GET: ProductController/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             return View(productRepository.GetDetailsByID(id));

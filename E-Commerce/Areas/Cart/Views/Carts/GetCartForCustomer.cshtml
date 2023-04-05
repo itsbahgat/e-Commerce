@@ -37,12 +37,7 @@
 </head>
 
 <body>
-    <!-- Page Preloder -->
-    @*<div id="preloder">
-    <div class="loader"></div>
-    </div>*@
-    <!--Page Preloader End-->
-    <!-- Breadcrumb Section Begin -->
+
     <section class="breadcrumb-option">
         <div class="container pt-5">
             <div class="row">
@@ -76,26 +71,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @*  <tr>
-                                <td class="product__cart__item">
-                                <div class="product__cart__item__pic">
-                                <img src="~/assets/img/shopping-cart/cart-1.jpg" alt="">
-                                </div>
-                                <div class="product__cart__item__text">
-                                <h6>T-shirt Contrast Pocket</h6>
-                                <h5>$98.49</h5>
-                                </div>
-                                </td>
-                                <td class="quantity__item">
-                                <div class="quantity">
-                                <div class="pro-qty-2">
-                                <input type="text" value="1">
-                                </div>
-                                </div>
-                                </td>
-                                <td class="cart__price">$ 30.00</td>
-                                <td class="cart__close"><i class="fa fa-close"></i></td>
-                                </tr>*@
+
                                 @{
                                     int sum = 0;
                                 }
@@ -125,7 +101,9 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        @(sum += (item.Price * item.Quantity));
+                                        @{
+                                            sum += (item.Price * item.Quantity);
+                                        }
                                         <td class="cart__price">@((item.Price * item.Quantity).ToString())</td>
                                         <td>
 
