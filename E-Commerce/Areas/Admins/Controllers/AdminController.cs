@@ -9,7 +9,7 @@ using NuGet.Protocol.Core.Types;
 
 namespace E_Commerce.Areas.Admins.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly UserManager<E_CommerceUser> _userManager;
