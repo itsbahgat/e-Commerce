@@ -11,7 +11,7 @@ This is a web application for a clothing e-commerce site. It is built using ASP.
 -   Cloudinary photo service
 
 
-## Installation
+## Installation :
 
 1.  Clone the repository to your local machine.
 2.  Open the project in Visual Studio.
