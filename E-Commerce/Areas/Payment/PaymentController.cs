@@ -3,6 +3,7 @@ using E_Commerce.Areas.CartNS.Models;
 using Stripe;
 using E_Commerce.Areas.Identity.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace E_Commerce.Areas.Payment
 {
@@ -17,8 +18,6 @@ namespace E_Commerce.Areas.Payment
             _context = context;
         }
 
-
-        private long Amount;
         public IActionResult Index(int cartID)
         {
             // Set your secret key. Remember to switch to your live secret key in production.
@@ -48,6 +47,18 @@ namespace E_Commerce.Areas.Payment
             _context.SaveChanges();
 
             return View();
+        }
+
+        [Authorize(Roles = "Admin")]
+        [Route("Admin/orders/all")]
+        public ActionResult ListPayments()
+        {
+            StripeConfiguration.ApiKey = "sk_test_51Mrkr2DMlYSWSoFpJ64FJZskIyxKDwaYUg7SFC3e26PbC3AfNK1e1fKZVz17cItcO5edPz8LhyWLRqlBwPFJppQy008roeSQsV";
+
+            var options = new ChargeListOptions { Limit = 1000 };
+            var service = new ChargeService();
+            StripeList<Charge> charges = service.List(options);
+            return View(charges);
         }
 
         public IActionResult Success()
