@@ -40,7 +40,7 @@
                     <div class="shop__sidebar">
                         <div class="shop__sidebar__search">
                             <form action="#">
-                                <input type="text" placeholder="Search...">
+                                <input type="text" id="searchBar" placeholder="Search...">
                                 <button type="submit"><span class="icon_search"></span></button>
                             </form>
                         </div>
@@ -180,39 +180,50 @@
                                 @Html.DisplayNameFor(model => model.Name)
                             </dt>
                             <dd class="col-sm-10">
+                                &nbsp&nbsp
                                 @Html.DisplayFor(model => model.Name)
                             </dd>
                             <dt class="col-sm-2">
                                 @Html.DisplayNameFor(model => model.Category)
                             </dt>
                             <dd class="col-sm-10">
+                                &nbsp&nbsp
                                 @Html.DisplayFor(model => model.Category)
                             </dd>
                             <dt class="col-sm-2">
                                 @Html.DisplayNameFor(model => model.Description)
                             </dt>
                             <dd class="col-sm-10">
+                                &nbsp&nbsp
                                 @Html.DisplayFor(model => model.Description)
                             </dd>
                             <dt class="col-sm-2">
                                 @Html.DisplayNameFor(model => model.Price)
                             </dt>
                             <dd class="col-sm-10">
+                                &nbsp&nbsp
                                 @Html.DisplayFor(model => model.Price)
                             </dd>
                             <dt class="col-sm-2">
-                                @Html.DisplayNameFor(model => model.ImagesString)
+                                @Html.Label("Image")
                             </dt>
                             <dd class="col-sm-10">
-                                @Html.DisplayFor(model => model.ImagesString)
+                                &nbsp&nbsp
+                                <img class="product__item__pic" src=@Html.DisplayFor(model => model.ImagesString) alt="">
                             </dd>
                         </dl>
                     </div>
                     <div>
-                        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-                        <a asp-action="Index">Back to List</a>
+                        @if (User.Claims.Count() != 0 && User.Claims.ToList()[4].Value != "User")
+                        {
+                            <div>
+                                <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+                                <a asp-action="Index">Back to List</a>
+                            </div>
+                        }
                     </div>
                 </div>
+
             </div>
     </section>
     <script src="~/assets/js/jquery-3.3.1.min.js"></script>

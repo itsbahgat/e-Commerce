@@ -42,10 +42,17 @@
                 <div class="col-lg-3">
                     <div class="shop__sidebar">
                         <div class="shop__sidebar__search">
-                            <form action="#">
-                                <input type="text" placeholder="Search...">
-                                <button type="submit"><span class="icon_search"></span></button>
+                            <form id="searchForm" onsubmit="return false;">
+                                <input type="text" id="searchBar" placeholder="Search...">
+                                <button type="submit" onclick="searchProduct()">Search</button>
                             </form>
+
+                            <script>
+                                function searchProduct() {
+                                    var name = document.getElementById("searchBar").value;
+                                    window.location.href = "/Product/DetailsByName/" + name;
+                                }
+                            </script>
                         </div>
 
                         <div class="shop__sidebar__accordion">
