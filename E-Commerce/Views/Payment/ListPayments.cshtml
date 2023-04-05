@@ -1,0 +1,24 @@
+﻿
+@model Stripe.StripeList<Stripe.Charge>
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Charge ID</th>
+            <th>Amount</th>
+            <th>Currency</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var charge in Model)
+        {
+            <tr>
+                <td>@charge.Id</td>
+                <td>@charge.Amount</td>
+                <td>@charge.Currency</td>
+            </tr>
+        }
+    </tbody>
+</table>

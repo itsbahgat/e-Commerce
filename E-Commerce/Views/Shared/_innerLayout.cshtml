@@ -42,7 +42,7 @@
     <!--    Main Content-->
     <!-- ===============================================-->
     <main class="main" id="top">
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 d-block" data-navbar-on-scroll="data-navbar-on-scroll">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 d-block position-relative" data-navbar-on-scroll="data-navbar-on-scroll">
             <div class="container">
                 <a class="navbar-brand d-inline-flex" href="@Url.Action("Index", "Home")"><img class="d-inline-block" src="~/assets/img/gallery/logo.png" alt="logo" /><span class="text-1000 fs-0 fw-bold ms-2">Majestic</span></a>
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -51,10 +51,6 @@
                         <li class="nav-item px-2"><a class="nav-link fw-medium active" aria-current="page" href="@Url.Action("Index", "Home")">Home</a></li>
                         @*<li class="nav-item px-2"><a class="nav-link fw-medium" href="@Url.Action("shopCart", "Home")">Shop Cart</a></li>*@
                         <li class="nav-item px-2"><a class="nav-link fw-medium" href="@Url.Action("Index", "Product")">Products</a></li>
-                        @if (User.Claims.Count() != 0)
-                        {
-                            <li class="nav-item px-2"><a class="nav-link fw-medium" href="@Url.Action("Index", "Favourite", new {custId = @User.Claims.ToList()[0].Value})">Favourites</a></li>
-                        }
 
                         @{
                             string customerId = string.Empty;
@@ -72,7 +68,13 @@
                             url = url.Replace("{customerId}", customerId);
 
                         }
-                        <li class="nav-item px-2"><a class="nav-link fw-medium" href="@url">Cart</a></li>
+                        
+                        @if (User.Claims.Count() != 0)
+                        {
+                            <li class="nav-item px-2"><a class="nav-link fw-medium" href="@Url.Action("Index", "Favourite", new {custId = @User.Claims.ToList()[0].Value})">Favourites</a></li>
+                            <li class="nav-item px-2"><a class="nav-link fw-medium" href="@url">Cart</a></li>
+                        }
+
                     </ul>
                     <form class="d-flex">
 
