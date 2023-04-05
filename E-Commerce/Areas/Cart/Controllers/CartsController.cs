@@ -50,7 +50,15 @@ namespace E_Commerce.Areas.CartNS.Controllers
 
             if (cartItems == null || !cartItems.Any())
             {
-                return NotFound();
+                return View(cartItems.Select(c => new {
+                    c.Id,
+                    c.Name,
+                    c.Price,
+                    c.imageString,
+                    c.Quantity,
+                    c.CartId,
+                    c.productID
+                }));
             }
 
             var response = cartItems.Select(c => new {
