@@ -77,12 +77,6 @@ namespace E_Commerce.Areas.CartNS.Models
             CartItems.Clear();
         }
 
-
-        public void Checkout()
-        {
-            IsCompleted = true;
-            // Additional logic for order completion (e.g. payment processing, shipping, etc.) could be added here
-        }
     }
 
     public class CartItem

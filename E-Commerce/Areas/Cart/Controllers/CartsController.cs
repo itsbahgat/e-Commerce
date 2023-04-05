@@ -184,7 +184,7 @@ namespace E_Commerce.Areas.CartNS.Controllers
             return Ok(cart);
         }
 
-        [HttpPost("{customerId}/Checkout")]
+        [Route("{customerId}/Checkout")]
         public async Task<IActionResult> Checkout(string customerId)
         {
             // Find the cart for the customer
@@ -198,14 +198,13 @@ namespace E_Commerce.Areas.CartNS.Controllers
                 return NotFound();
             }
 
-            // Perform the checkout process
-            cart.Checkout();
-
-            // Save changes to the database
             await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Payment", new {  customerID = customerId, cartID = cart.Id});
+
+        
 
             // Return a success result
-            return Ok();
+            //return Ok();
         }
 
 
