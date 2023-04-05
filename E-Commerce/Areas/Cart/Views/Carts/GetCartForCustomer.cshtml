@@ -161,7 +161,14 @@
                             URL = URL.Replace("{customerId}", User.Claims.ToList()[0].Value);
 
                         }
-                        <a href="@URL" class="primary-btn">Proceed to checkout</a>
+                        @if ( sum > 0 )
+                        {
+                            <a href="@URL" class="primary-btn">Proceed to checkout</a>
+                        }
+                        else
+                        {
+                            <a href="#" class="primary-btn" disabled>Proceed to checkout</a>
+                        }
                     </div>
                 </div>
             </div>
