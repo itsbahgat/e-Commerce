@@ -48,7 +48,7 @@ namespace E_Commerce.Areas.CartNS.Models
                     imageString = product.ImagesString,
                     Quantity = quantity,
                     CartId = this.Id,
-                   // Cart = this // Set the Cart property to the current Cart instance
+                    // Cart = this // Set the Cart property to the current Cart instance
                 };
 
                 CartItems.Add(newCartItem);
@@ -80,7 +80,7 @@ namespace E_Commerce.Areas.CartNS.Models
 
         public void Checkout()
         {
-           IsCompleted = true;
+            IsCompleted = true;
             // Additional logic for order completion (e.g. payment processing, shipping, etc.) could be added here
         }
     }

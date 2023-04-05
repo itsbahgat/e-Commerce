@@ -1,0 +1,73 @@
+﻿@model E_Commerce.Areas.Products.Models.Product
+
+
+@{
+    Layout = "_ProductLayout";
+}
+
+@{
+    ViewData["Title"] = "Details";
+    var reopFavourites = ViewBag.favRepo;
+}
+
+<div class="col-lg-9">
+    <div>
+        <h4>Product</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                &nbsp&nbsp
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Category)
+            </dt>
+            <dd class="col-sm-10">
+                &nbsp&nbsp
+                @Html.DisplayFor(model => model.Category)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-sm-10">
+                &nbsp&nbsp
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-10">
+                &nbsp&nbsp
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.Label("Image")
+            </dt>
+            <dd class="col-sm-10">
+                &nbsp&nbsp
+                <img class="product__item__pic" src=@Html.DisplayFor(model => model.ImagesString) alt="">
+            </dd>
+        </dl>
+    </div>
+    @if (User.Claims.Count() != 0 && User.Claims.ToList()[4].Value != "User")
+    {
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    }
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="product__pagination">
+                <a class="active" href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <span>...</span>
+                <a href="#">21</a>
+            </div>
+        </div>
+    </div>
+</div>

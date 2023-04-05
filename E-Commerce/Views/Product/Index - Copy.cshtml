@@ -1,0 +1,87 @@
+﻿@using E_Commerce.Areas.FavouriteItems.Models;
+@using E_Commerce.Areas.Identity.Data;
+@using System.Security.Claims;
+@using Microsoft.AspNetCore.Identity;
+@using System.Diagnostics;
+@using E_Commerce.Areas.FavouriteItems.RepoServices;
+@using Microsoft.EntityFrameworkCore;
+@using E_Commerce.Areas.Products.Models;
+@model IEnumerable<E_Commerce.Areas.Products.Models.Product>
+
+@{
+    Layout = "_ProductLayout";
+}
+
+
+@inject UserManager<E_CommerceUser> UserManager
+
+
+@{
+
+    var prodNum = Model.Count() % 12;
+
+
+    var optionsBuilder = new DbContextOptionsBuilder<IdentityContext>();
+    optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=E_Commerce;Integrated Security=True;Encrypt=false;MultipleActiveResultSets=true");
+
+    IdentityContext context = new IdentityContext(optionsBuilder.Options);
+
+    string userId = string.Empty;
+    FavouriteItemsRelation itemRelation = new FavouriteItemsRelation();
+    if (User.Claims.Count() != 0)
+    {
+        //@if (SignInManager.IsSignedIn(User))
+        // Get the currently logged in user
+        userId = User.Claims.ToList()[0].Value;
+        itemRelation.E_CommerceUserId = userId;
+        itemRelation.Product = new Product();
+        itemRelation.E_CommerceUser = new E_CommerceUser();
+    }
+    else
+        Trace.WriteLine("no user");
+}
+
+<!--start region-->
+<!--start region-->
+<table class="table">
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg">
+                            <a href=@Url.Action("Details", "Product", new {id = item.Id})><img class="product__item__pic" src=@Html.DisplayFor(modelItem => item.ImagesString) alt=""></a>
+                            @if (User.Claims.Count() != 0)
+                            {
+                                <ul class="product__hover">
+                                    <li>
+                                        <a href=@Url.Action("DeleteFav", "Favourite", new {custId = userId, prodId = item.Id}) class="add-cart">
+                                            <img id="heart-icon" src="~/assets/img/icon/heart.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href=@Url.Action("CreateFav", "Favourite", new {custId = userId, prodId = item.Id}) class="add-cart">
+                                            <img id="heart-icon" src="~/assets/img/icon/redHeart.png" width="40px" alt="">
+                                        </a>
+                                    </li>
+                                </ul>
+                            }
+                        </div>
+                        <div class="product__item__text">
+                            <h6>@Html.DisplayFor(modelItem => item.Name)</h6>
+                            <h5>@Html.DisplayFor(modelItem => item.Price)</h5>
+                            @if (User.Claims.Count() != 0)
+                            {
+                                <a href="#" class="add-cart">+ Add To Cart</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </tr>
+        }
+    </tbody>
+</table>
+<!--end region-->
+<!--end region-->

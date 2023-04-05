@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Images</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td>@product.Category</td>
+                <td>@product.Description</td>
+                <td>@product.Price</td>
+                <td><img class="w-25 p-3 rounded-circle" src="@product.ImagesString" alt="Product Image" /></td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = product.Id })" class="btn btn-primary">Edit</a>
+                    <a href="@Url.Action("Delete", new { id = product.Id })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -16,7 +16,7 @@ public class IdentityContext : IdentityDbContext<E_CommerceUser>
     {
     }
 
-    public DbSet<Product> Products { get; set; }
+    
     public DbSet<FavouriteItemsRelation> FavouriteItemsRelations { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -45,6 +45,7 @@ public class IdentityContext : IdentityDbContext<E_CommerceUser>
     public DbSet<E_CommerceUser> E_CommerceUsers { get; set; }
     public DbSet<CartItem> CartItems { get; set; }
     public DbSet<Product> Products { get; set; }
+
 
 
 }

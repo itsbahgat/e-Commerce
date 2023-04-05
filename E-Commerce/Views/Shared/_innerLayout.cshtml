@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Diagnostics;
+<!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 
 <head>
@@ -29,7 +30,7 @@
     <!--    Stylesheets-->
     <!-- ===============================================-->
     <link href="~/assets/css/theme.css" rel="stylesheet" />
-     <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://js.stripe.com/v3/"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
 </head>
@@ -50,9 +51,30 @@
                         <li class="nav-item px-2"><a class="nav-link fw-medium active" aria-current="page" href="@Url.Action("Index", "Home")">Home</a></li>
                         <li class="nav-item px-2"><a class="nav-link fw-medium" href="@Url.Action("Man", "Home")">Shop</a></li>
                         <li class="nav-item px-2"><a class="nav-link fw-medium" href="@Url.Action("shopDetails", "Home")">Shop Details</a></li>
-                        <li class="nav-item px-2"><a class="nav-link fw-medium" href="@Url.Action("shopCart", "Home")">Shop Cart</a></li>
+                        @*<li class="nav-item px-2"><a class="nav-link fw-medium" href="@Url.Action("shopCart", "Home")">Shop Cart</a></li>*@
                         <li class="nav-item px-2"><a class="nav-link fw-medium" href="@Url.Action("Index", "Product")">All products</a></li>
-                        
+                        @if (User.Claims.Count() != 0)
+                        {
+                            <li class="nav-item px-2"><a class="nav-link fw-medium" href="@Url.Action("Index", "Favourite", new {custId = @User.Claims.ToList()[0].Value})">Favourites</a></li>
+                        }
+
+                        @{
+                            string customerId = string.Empty;
+                            if (User.Claims.Count() != 0)
+                            {
+                                //@if (SignInManager.IsSignedIn(User))
+                                // Get the currently logged in user
+                                customerId = User.Claims.ToList()[0].Value;
+                            }
+                            else
+                                Trace.WriteLine("no user");
+
+
+                            string url = "/cart/{customerId}/CartItems";
+                            url = url.Replace("{customerId}", customerId);
+
+                        }
+                        <li class="nav-item px-2"><a class="nav-link fw-medium" href="@url">Shop Cart</a></li>
                     </ul>
                     <form class="d-flex">
                         <a class="text-1000" href="#!">
@@ -83,12 +105,18 @@
                     </form>
 
                 </div>
-            <partial name="_LoginPartial" />
+                <partial name="_LoginPartial" />
             </div>
         </nav>
 
-        <section class="py-1 bg-light-gradient border-bottom border-white border-5">	
-                @RenderBody()
+        <section class="py-1 bg-light-gradient border-bottom border-white border-5">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            @RenderBody()
         </section>
         <!-- ============================================-->
         <!-- <section> begin ============================-->

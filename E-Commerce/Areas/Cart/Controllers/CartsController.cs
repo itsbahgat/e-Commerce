@@ -59,13 +59,18 @@ namespace E_Commerce.Areas.CartNS.Controllers
                 c.Price,
                 c.imageString,
                 c.Quantity,
-                c.CartId
+                c.CartId,
+                c.productID
             });
 
-           // return Ok(response);
+            // return Ok(response);
             return View(response);
         }
-
+        [HttpGet("{customerId}/AddToCart/{productId}/{quantity}")]
+        public async Task<IActionResult> AddToCartByGet(string customerId, int productId, int quantity)
+        {
+            return await AddToCart(customerId, productId, quantity);
+        }
 
         [HttpPost("{customerId}/AddToCart/{productId}/{quantity}")]
         public async Task<IActionResult> AddToCart(string customerId, int productId, int quantity)
@@ -80,6 +85,8 @@ namespace E_Commerce.Areas.CartNS.Controllers
             {
                 cart = new Models.Cart { E_CommerceUserId = customerId, IsCompleted = false };
                 _context.Carts.Add(cart);
+                await _context.SaveChangesAsync();
+
             }
 
             // Find the product
@@ -99,7 +106,15 @@ namespace E_Commerce.Areas.CartNS.Controllers
             await _context.SaveChangesAsync();
 
             // Return the updated cart
-            return Ok(cart);
+            return RedirectToAction("Index", "Product"); 
+            
+            //return Ok(cart);
+        }
+
+        [HttpGet("{customerId}/RemoveFromCart/{productId}/{quantity}")]
+        public async Task<IActionResult> RemoveFromCartByGet(string customerId, int productId, int quantity)
+        {
+            return await RemoveFromCart(customerId, productId, quantity);
         }
 
         [HttpDelete("{customerId}/RemoveFromCart/{productId}/{quantity}")]
@@ -132,7 +147,9 @@ namespace E_Commerce.Areas.CartNS.Controllers
             await _context.SaveChangesAsync();
 
             // Return the updated cart
-            return Ok(cart);
+            //return Ok(cart);
+            return RedirectToAction("Index", "Product");
+            //return RedirectToAction("GetCartForCustomer", "cart", new { customerId = customerId });
         }
 
         [HttpDelete("{customerId}/clearCart")]
