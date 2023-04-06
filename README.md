@@ -16,4 +16,11 @@ This is a web application for a clothing e-commerce site. It is built using ASP.
 1.  Clone the repository to your local machine.
 2.  Open the project in Visual Studio.
 3.  Install any necessary packages using NuGet.
-4.  Run the application using IIS Express or your preferred web server.
+4.  Make sure to update the server name in *appSettings* file.
+5.  Add user secrets, right click on the project inside visual studio and add the secret keys. 
+  - You can contact one of the contrubuters to get the secret keys.
+6.  In the *package manager console*, write 
+  ```
+  update-database -context IdentityContext
+  ```
+7.  Run the application using IIS Express or your preferred web server.
