@@ -2,6 +2,13 @@
 
 This is a web application for a clothing e-commerce site. It is built using ASP.NET Core MVC and includes several features such as user authentication, email confirmation, external login with Google and Facebook, customer and product management, filtering products by category and price range, adding products to favorites, and a cart with Stripe payment and Cloudinary photo services. It also includes an admin dashboard with CRUD operations for managing customers and products.
 
+## Demo
+
+
+https://user-images.githubusercontent.com/62761039/231823730-fa846b47-df36-45c7-b027-c8788762b525.mp4
+
+
+
 ## Technology Stack
 
 -   ASP.NET Core MVC
